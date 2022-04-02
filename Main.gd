@@ -142,6 +142,5 @@ func show_story(story_text: String):
 	get_tree().paused = true
 
 func queue_story(story_text: String):
-	print("Queueing story: " + story_text)
 	# Add the story to the queue
 	story_queue.append(story_text)

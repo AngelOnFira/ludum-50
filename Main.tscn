@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Earth Large.jpeg" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/Fonts/Log.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Assets/Fonts/MoneyFont.tres" type="DynamicFont" id=10]
 [ext_resource path="res://TekShop.gd" type="Script" id=11]
+[ext_resource path="res://Compendium.gd" type="Script" id=12]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -140,6 +141,7 @@ custom_fonts/normal_font = ExtResource( 9 )
 text = "asdfasd"
 
 [node name="TekShop" type="Tabs" parent="LeftSide/LeftSidePanel/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -173,6 +175,34 @@ color = Color( 0.215686, 0.215686, 0.215686, 1 )
 margin_left = 4.0
 margin_right = 308.0
 margin_bottom = 434.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 7 )
+custom_fonts/normal_font = ExtResource( 9 )
+text = "asdfasd"
+
+[node name="Compendium" type="Tabs" parent="LeftSide/LeftSidePanel/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+script = ExtResource( 12 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftSide/LeftSidePanel/TabContainer/Compendium"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="LogBG" type="ColorRect" parent="LeftSide/LeftSidePanel/TabContainer/Compendium/HBoxContainer"]
+margin_right = 407.0
+margin_bottom = 459.0
+size_flags_horizontal = 3
+color = Color( 0.215686, 0.215686, 0.215686, 1 )
+
+[node name="CompendiumText" type="RichTextLabel" parent="LeftSide/LeftSidePanel/TabContainer/Compendium/HBoxContainer/LogBG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/mono_font = ExtResource( 7 )

@@ -14,12 +14,15 @@ func _ready():
 
 func _on_Laptop_pressed():
 	# Make sure they have enough money
-	if blackboard.money > 1000:
+	if blackboard.money > blackboard.laptop_price:
 		# Take the money
-		blackboard.money -= 1000
+		blackboard.money -= blackboard.laptop_price
 
 		# Send a message about the laptop
 		blackboard.emit_signal("show_story", "You bought a laptop I see. What are you looking up? Medetation techniques? Do you really think you can slow down time enough to matter?")
 
-		# Slow down time
-		blackboard.total_remembered_seconds += 5.0
+		# Add the entry to the compendium
+		blackboard.add_to_compendium(
+			"Medetation techniques",
+			5.0
+		)

@@ -3,14 +3,19 @@ extends Node
 
 var money: int = 0
 
+# Vars for debugging
 var seconds_per_life: float = 10.0
+var laptop_price = 10
 
 var timer = 1000 * seconds_per_life
 var time_multiplier = 1.0
 
+
 # Total time added from things that aren't in the character's memory
 var total_added_seconds_ephemeral = 0.0
-var total_remembered_seconds = 0.0
+# var total_remembered_seconds = 0.0
+
+var compendium = []
 
 
 # If they haven't found the TekShop yet
@@ -79,6 +84,25 @@ signal queue_story(text)
 
 # Get the multiplier for time
 func update_time_multiplier():
-	var total_added_time = total_added_seconds_ephemeral + total_remembered_seconds + seconds_per_life
+	# Collect times from the compendium
+	var compentium_time_added = 0.0
+
+	for entry in compendium:
+		if "seconds_added" in entry:
+			compentium_time_added += entry["seconds_added"]
+
+	var total_added_time = total_added_seconds_ephemeral + compentium_time_added + seconds_per_life
+	
 	# Update the time multiplier
 	time_multiplier = 1.0 + seconds_per_life / total_added_time
+
+func add_to_compendium(name: String, seconds_added: float):
+	# Make sure the compendium is visible
+	emit_signal("show_tab", 2)
+
+	# Add the entry
+	var compendium_entry = {
+		"name": name,
+		"seconds_added": seconds_added,
+	}
+	compendium.append(compendium_entry)
