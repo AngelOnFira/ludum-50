@@ -12,19 +12,51 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="LeftPanel" type="VBoxContainer" parent="HBoxContainer"]
-anchor_right = 0.3
+margin_right = 77.0
 margin_bottom = 600.0
 
 [node name="Money" type="Label" parent="HBoxContainer/LeftPanel"]
-margin_right = 307.0
+margin_right = 77.0
 margin_bottom = 14.0
 
+[node name="Button" type="Button" parent="HBoxContainer/LeftPanel"]
+margin_top = 18.0
+margin_right = 77.0
+margin_bottom = 38.0
+text = "Laptop 1"
+
+[node name="Button2" type="Button" parent="HBoxContainer/LeftPanel"]
+margin_top = 42.0
+margin_right = 77.0
+margin_bottom = 62.0
+text = "Upgrade 1"
+
+[node name="Button3" type="Button" parent="HBoxContainer/LeftPanel"]
+margin_top = 66.0
+margin_right = 77.0
+margin_bottom = 86.0
+text = "Upgrade 1"
+
+[node name="Button4" type="Button" parent="HBoxContainer/LeftPanel"]
+margin_top = 90.0
+margin_right = 77.0
+margin_bottom = 110.0
+text = "Upgrade 1"
+
+[node name="Button5" type="Button" parent="HBoxContainer/LeftPanel"]
+margin_top = 114.0
+margin_right = 77.0
+margin_bottom = 134.0
+text = "Upgrade 1"
+
 [node name="MidPanel" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 4.0
-margin_right = 4.0
+margin_left = 81.0
+margin_right = 81.0
 margin_bottom = 600.0
 
 [node name="Planet" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 8.0
-margin_right = 8.0
+margin_left = 85.0
+margin_right = 85.0
 margin_bottom = 600.0
+
+[connection signal="pressed" from="HBoxContainer/LeftPanel/Button" to="." method="_on_Button_pressed"]
