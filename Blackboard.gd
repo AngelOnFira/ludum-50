@@ -6,7 +6,7 @@ var money: int = 0
 var seconds_per_life: float = 10.0
 var laptop_price = 1000
 
-var debug = true
+var debug = false
 
 var timer = 1000 * seconds_per_life
 var time_multiplier = 1.0
@@ -63,6 +63,8 @@ func _ready():
 
 		try_to_survive_story = try_to_survive_story[0]
 
+	print(compendium)
+
 
 func reset_game():
 	try_to_survive_story_index = 0
@@ -72,6 +74,7 @@ func reset_game():
 
 	# Reset money
 	money = 0
+	emit_signal("decrease_money")
 
 	# Reset any non-remembered time
 	total_added_seconds_ephemeral = 0.0
@@ -90,6 +93,10 @@ signal show_story(text)
 # Queue a story message to show at the next death
 signal queue_story(text)
 
+signal increase_time()
+
+signal decrease_money()
+
 # Get the multiplier for time
 func update_time_multiplier():
 	# Collect times from the compendium
@@ -99,10 +106,11 @@ func update_time_multiplier():
 		if "seconds_added" in entry:
 			compentium_time_added += entry["seconds_added"]
 
+
 	var total_added_time = total_added_seconds_ephemeral + compentium_time_added + seconds_per_life
-	
+
 	# Update the time multiplier
-	time_multiplier = 1.0 + seconds_per_life / total_added_time
+	time_multiplier = seconds_per_life / total_added_time
 
 func add_to_compendium(name: String, seconds_added: float):
 	# Make sure the compendium is visible

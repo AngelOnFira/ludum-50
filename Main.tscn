@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Earth Large.jpeg" type="Texture" id=2]
@@ -12,6 +12,150 @@
 [ext_resource path="res://Assets/Fonts/MoneyFont.tres" type="DynamicFont" id=10]
 [ext_resource path="res://TekShop.gd" type="Script" id=11]
 [ext_resource path="res://Compendium.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Fonts/MaskShader.tres" type="Material" id=13]
+
+[sub_resource type="Animation" id=1]
+resource_name = "DecreaseMoney"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Money:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.717647, 0.294118, 0.294118, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "IncreaseTime"
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.439216, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.815686, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.435294, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 1 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 1 )
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "MoveAsteroid"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Asteroid:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 805, 82 ), Vector2( 814, 333 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Asteroid:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 805, 82 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0.439216, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0.815686, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0.435294, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Money:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -24,14 +168,17 @@ position = Vector2( 495.938, 299 )
 scale = Vector2( 0.547629, 0.53013 )
 texture = ExtResource( 4 )
 
-[node name="Asteroid" type="Sprite" parent="."]
-position = Vector2( 828, 136 )
-texture = ExtResource( 3 )
-
 [node name="EarthLarge" type="Sprite" parent="."]
-position = Vector2( 825, 463 )
-scale = Vector2( 0.389734, 0.389734 )
+material = ExtResource( 13 )
+position = Vector2( 815, 465 )
+scale = Vector2( 0.339398, 0.354563 )
 texture = ExtResource( 2 )
+
+[node name="Asteroid" type="Sprite" parent="."]
+material = ExtResource( 13 )
+position = Vector2( 805, 82 )
+scale = Vector2( 0.542493, 0.533846 )
+texture = ExtResource( 3 )
 
 [node name="LeftSide" type="Control" parent="."]
 anchor_right = 0.58
@@ -46,6 +193,7 @@ margin_right = 593.0
 margin_bottom = 101.0
 
 [node name="Timer" type="Label" parent="LeftSide/LeftSidePanel/CurrencyBox"]
+modulate = Color( 0.439216, 0.815686, 0.435294, 1 )
 margin_right = 293.0
 margin_bottom = 101.0
 custom_fonts/font = ExtResource( 6 )
@@ -189,6 +337,7 @@ margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 script = ExtResource( 12 )
+test = NodePath("../../../../Asteroid")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LeftSide/LeftSidePanel/TabContainer/Compendium"]
 anchor_right = 1.0
@@ -240,6 +389,13 @@ margin_top = -107.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 6 )
 text = "Continue"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../EarthLarge")
+anims/DecreaseMoney = SubResource( 1 )
+anims/IncreaseTime = SubResource( 2 )
+anims/MoveAsteroid = SubResource( 3 )
+anims/RESET = SubResource( 4 )
 
 [connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide1" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide2" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 2 ]]

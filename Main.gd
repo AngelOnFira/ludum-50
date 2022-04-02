@@ -35,6 +35,7 @@ var levels = [
 ]
 
 onready var tab_container = $LeftSide/LeftSidePanel/TabContainer
+onready var animation_player = $AnimationPlayer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -49,6 +50,9 @@ func _ready():
 	blackboard.connect("show_tab", self, "show_tab")
 	blackboard.connect("show_story", self, "show_story")
 	blackboard.connect("queue_story", self, "queue_story")
+
+	# Animations
+	blackboard.connect("decrease_money", self, "decrease_money_animation")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -94,7 +98,7 @@ func change_time(delta):
 
 	# Change based on the multiplier
 	blackboard.update_time_multiplier()
-	var multiplier_adjust: float = real_time_change / blackboard.time_multiplier
+	var multiplier_adjust: float = real_time_change * blackboard.time_multiplier
 
 	# Subtract time
 	blackboard.timer -= multiplier_adjust
@@ -144,3 +148,6 @@ func show_story(story_text: String):
 func queue_story(story_text: String):
 	# Add the story to the queue
 	story_queue.append(story_text)
+
+func decrease_money_animation():
+	animation_player.play("MoneyDecrease")
