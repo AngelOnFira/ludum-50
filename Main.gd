@@ -14,6 +14,10 @@ extends Control
 # Mid
 # 
 
+var story = [
+	"Hmm, it seems that the world has ended. How about we give it another try?",
+]
+
 var timer = 1000 * 10 # 10 seconds
 
 var money: float = 0.0
@@ -25,7 +29,7 @@ var levels = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$StoryPanel/RichTextLabel.text = story[0]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,16 +57,32 @@ func _process(delta):
 		milliseconds,
 	]
 	
-	$HBoxContainer/LeftPanel/Timer.text = time_left
+	$HBoxContainer/MidPanel/Timer.text = time_left
 	$HBoxContainer/LeftPanel/Money.text = str(amount)
 
 	# If time runs out, reset the timer to 10 seconds
 	if timer <= 0:
 		timer = 1000 * 10
-		$HBoxContainer/LeftPanel/Timer.text = "10:0000"
+		$HBoxContainer/MidPanel/Timer.text = "10:0000"
 		$HBoxContainer/LeftPanel/Money.text = "0"
+
+		# Show the StoryPanel
+		$StoryPanel.visible = true
+
+		# Pause the game
+		get_tree().paused = true
 
 
 
 func _on_Button_pressed():
 	levels[0] += 1
+
+
+func _on_Continue_pressed():
+	# Hide the panel
+	$StoryPanel.visible = false
+
+	# Start the game again
+	get_tree().paused = true
+
+
