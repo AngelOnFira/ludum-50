@@ -1,5 +1,8 @@
 extends Control
 
+onready var blackboard = get_node("/root/Blackboard")
+
+
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -29,10 +32,19 @@ var levels = [
 	0, # Laptop updates
 ]
 
+onready var tab_container = $LeftSide/LeftSidePanel/TabContainer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$StoryPanel/RichTextLabel.text = story[0]
+	
+	# Hide any tabs except the first
+	for i in range(1, tab_container.get_child_count()):
+		tab_container.set_tab_hidden(i, true)
+
+	# Attach signals
+	blackboard.connect("show_tab", self, "show_tab")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -67,7 +79,10 @@ func _process(delta):
 	if timer <= 0:
 		timer = 1000 * 10
 		$LeftSide/LeftSidePanel/Timer.text = "10:000"
-		# $"LeftSide/LeftSidePanel/TabContainer/Run and hide!/LeftPanel/Money".text = "0"
+		# $"LeftSide/LeftSidePanel/TabContainer/Run and
+		# hide!/LeftPanel/Money".text = "0"
+		
+		# Run the reset function in blackboard
 
 		# Show the StoryPanel
 		$StoryPanel.visible = true
@@ -91,3 +106,5 @@ func _on_Continue_pressed():
 	print("resumed~!")
 
 
+func show_tab(tab: int):
+	tab_container.set_tab_hidden(tab, false)

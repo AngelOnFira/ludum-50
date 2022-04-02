@@ -171,6 +171,11 @@ margin_right = 585.0
 margin_bottom = 141.0
 text = "Upgrade 1"
 
+[node name="Popup" type="Popup" parent="LeftSide"]
+visible = true
+margin_right = 40.0
+margin_bottom = 40.0
+
 [node name="StoryPanel" type="ColorRect" parent="."]
 visible = false
 anchor_top = 0.671
@@ -207,6 +212,6 @@ text = "Continue"
 [connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel/Hide2" to="LeftSide/LeftSidePanel/TabContainer/Run and hide!" method="_on_Hide_pressed" binds= [ 2 ]]
 [connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel/Hide3" to="LeftSide/LeftSidePanel/TabContainer/Run and hide!" method="_on_Hide_pressed" binds= [ 3 ]]
 [connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel/Hide4" to="LeftSide/LeftSidePanel/TabContainer/Run and hide!" method="_on_Hide_pressed" binds= [ 4 ]]
-[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel/Search1" to="LeftSide/LeftSidePanel/TabContainer/Run and hide!" method="_on_Hide_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel/Search1" to="LeftSide/LeftSidePanel/TabContainer/Run and hide!" method="_on_Search_pressed"]
 [connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/TekShop/LeftPanel/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="StoryPanel/Continue" to="." method="_on_Continue_pressed"]
