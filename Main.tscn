@@ -48,9 +48,12 @@ align = 1
 [node name="TabContainer" type="TabContainer" parent="LeftSide/LeftSidePanel"]
 margin_top = 105.0
 margin_right = 593.0
-margin_bottom = 165.0
+margin_bottom = 600.0
+size_flags_vertical = 3
 
 [node name="Run and hide!" type="Tabs" parent="LeftSide/LeftSidePanel/TabContainer"]
+anchor_left = 0.05
+anchor_top = 0.05
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -65,7 +68,7 @@ anchor_bottom = 1.0
 
 [node name="LeftPanel" type="VBoxContainer" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer"]
 margin_right = 243.0
-margin_bottom = 151.0
+margin_bottom = 434.0
 
 [node name="Hide1" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel"]
 margin_right = 243.0
@@ -85,9 +88,10 @@ margin_top = 62.0
 margin_right = 243.0
 margin_bottom = 89.0
 custom_fonts/font = ExtResource( 7 )
-text = "Scream on the streets"
+text = "Ponder the situation"
 
 [node name="Hide4" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel"]
+visible = false
 margin_top = 93.0
 margin_right = 243.0
 margin_bottom = 120.0
@@ -95,17 +99,24 @@ custom_fonts/font = ExtResource( 7 )
 text = "Scream on the streets"
 
 [node name="Search1" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel"]
+visible = false
 margin_top = 124.0
 margin_right = 243.0
 margin_bottom = 151.0
 custom_fonts/font = ExtResource( 7 )
 text = "Try to survive"
 
-[node name="HideLog" type="RichTextLabel" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer"]
-anchor_bottom = 1.0
+[node name="LogBG" type="ColorRect" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer"]
 margin_left = 247.0
-margin_right = 585.0
-margin_bottom = 151.0
+margin_right = 555.0
+margin_bottom = 434.0
+size_flags_horizontal = 3
+color = Color( 0.215686, 0.215686, 0.215686, 1 )
+
+[node name="HideLog" type="RichTextLabel" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LogBG"]
+margin_left = 4.0
+margin_right = 308.0
+margin_bottom = 434.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/mono_font = ExtResource( 7 )

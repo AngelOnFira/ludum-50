@@ -66,7 +66,7 @@ func _process(delta):
 	# If time runs out, reset the timer to 10 seconds
 	if timer <= 0:
 		timer = 1000 * 10
-		$LeftSide/LeftSidePanel/Timer.text = "10:0000"
+		$LeftSide/LeftSidePanel/Timer.text = "10:000"
 		# $"LeftSide/LeftSidePanel/TabContainer/Run and hide!/LeftPanel/Money".text = "0"
 
 		# Show the StoryPanel

@@ -1,7 +1,7 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[ext_resource path="res://Assets/Fonts/04B_19__.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Fonts/pixelade/PIXELADE.TTF" type="DynamicFontData" id=1]
 
 [resource]
-size = 15
+size = 25
 font_data = ExtResource( 1 )
