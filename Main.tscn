@@ -1,12 +1,28 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Earth Large.jpeg" type="Texture" id=2]
+[ext_resource path="res://Assets/Asteroid.jpg" type="Texture" id=3]
+[ext_resource path="res://Assets/Stars.jpg" type="Texture" id=4]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+
+[node name="Stars" type="Sprite" parent="."]
+position = Vector2( 513, 299 )
+scale = Vector2( 0.53013, 0.53013 )
+texture = ExtResource( 4 )
+
+[node name="Asteroid" type="Sprite" parent="."]
+position = Vector2( 828, 136 )
+texture = ExtResource( 3 )
+
+[node name="EarthLarge" type="Sprite" parent="."]
+position = Vector2( 825, 463 )
+scale = Vector2( 0.389734, 0.389734 )
+texture = ExtResource( 2 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -64,10 +80,5 @@ margin_bottom = 600.0
 margin_left = 85.0
 margin_right = 85.0
 margin_bottom = 600.0
-
-[node name="EarthLarge" type="Sprite" parent="HBoxContainer/Planet"]
-position = Vector2( 740, 463 )
-scale = Vector2( 0.389734, 0.389734 )
-texture = ExtResource( 2 )
 
 [connection signal="pressed" from="HBoxContainer/LeftPanel/Button" to="." method="_on_Button_pressed"]

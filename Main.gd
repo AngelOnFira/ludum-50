@@ -42,14 +42,26 @@ func _process(delta):
 	# Subtract time
 	timer -= 1000 * delta
 
+	var seconds = int(timer / 1000)
+	var milliseconds = int(int(timer) % 1000)
+
 	# Create time label
-	var time_left = "%s:%s" % [
-		str(int(timer / 1000 / 60)),
-		str(int(timer / 1000 % 60)),
+	var time_left = "%0*d:%0*d" % [
+		2,
+		seconds,
+		3,
+		milliseconds,
 	]
 	
 	$HBoxContainer/LeftPanel/Timer.text = time_left
 	$HBoxContainer/LeftPanel/Money.text = str(amount)
+
+	# If time runs out, reset the timer to 10 seconds
+	if timer <= 0:
+		timer = 1000 * 10
+		$HBoxContainer/LeftPanel/Timer.text = "10:0000"
+		$HBoxContainer/LeftPanel/Money.text = "0"
+
 
 
 func _on_Button_pressed():
