@@ -3,7 +3,12 @@ extends Node
 
 var money: int = 0
 
-var timer = 1000 * 1 # 10 seconds
+var seconds_per_life: int = 2
+
+var timer = 1000 * seconds_per_life
+
+# If they haven't found the TekShop yet
+var tutorial = true
 
 # Survive story
 var try_to_survive_story_index = 0
@@ -44,7 +49,7 @@ func reset_game():
 	try_to_survive_story_index = 0
 
 	# Reset the time
-	timer = 1000 * 10
+	timer = 1000 * seconds_per_life
 
 	# Reset money
 	money = 0
@@ -53,5 +58,12 @@ func reset_game():
 
 
 # Signals
+
+# Reveal a new tab
 signal show_tab(tab)
+
+# Show a story message right now
 signal show_story(text)
+
+# Queue a story message to show at the next death
+signal queue_story(text)

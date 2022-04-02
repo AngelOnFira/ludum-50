@@ -65,47 +65,46 @@ margin_top = 105.0
 margin_right = 593.0
 margin_bottom = 600.0
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 9 )
 
-[node name="Run and hide!" type="Tabs" parent="LeftSide/LeftSidePanel/TabContainer"]
-anchor_left = 0.05
-anchor_top = 0.05
+[node name="AHHHH" type="Tabs" parent="LeftSide/LeftSidePanel/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 44.0
 margin_right = -4.0
 margin_bottom = -4.0
 script = ExtResource( 8 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="LeftPanel" type="VBoxContainer" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer"]
+[node name="LeftPanel" type="VBoxContainer" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer"]
 margin_right = 243.0
-margin_bottom = 434.0
+margin_bottom = 447.0
 
-[node name="Hide1" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel"]
+[node name="Hide1" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel"]
 margin_right = 243.0
 margin_bottom = 27.0
 custom_fonts/font = ExtResource( 7 )
 text = "Run and hide!"
 
-[node name="Hide2" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel"]
+[node name="Hide2" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel"]
 margin_top = 31.0
 margin_right = 243.0
 margin_bottom = 58.0
 custom_fonts/font = ExtResource( 7 )
 text = "Scream on the streets"
 
-[node name="Hide3" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel"]
+[node name="Hide3" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel"]
 margin_top = 62.0
 margin_right = 243.0
 margin_bottom = 89.0
 custom_fonts/font = ExtResource( 7 )
 text = "Ponder the situation"
 
-[node name="Hide4" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel"]
+[node name="Hide4" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel"]
 visible = false
 margin_top = 93.0
 margin_right = 243.0
@@ -113,7 +112,7 @@ margin_bottom = 120.0
 custom_fonts/font = ExtResource( 7 )
 text = "Scream on the streets"
 
-[node name="Search1" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel"]
+[node name="Search1" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel"]
 visible = false
 margin_top = 124.0
 margin_right = 243.0
@@ -121,14 +120,14 @@ margin_bottom = 151.0
 custom_fonts/font = ExtResource( 7 )
 text = "Try to survive"
 
-[node name="LogBG" type="ColorRect" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer"]
+[node name="LogBG" type="ColorRect" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer"]
 margin_left = 247.0
-margin_right = 555.0
-margin_bottom = 434.0
+margin_right = 585.0
+margin_bottom = 447.0
 size_flags_horizontal = 3
 color = Color( 0.215686, 0.215686, 0.215686, 1 )
 
-[node name="HideLog" type="RichTextLabel" parent="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LogBG"]
+[node name="HideLog" type="RichTextLabel" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LogBG"]
 margin_left = 4.0
 margin_right = 308.0
 margin_bottom = 434.0
@@ -186,11 +185,6 @@ margin_right = 585.0
 margin_bottom = 141.0
 text = "Upgrade 1"
 
-[node name="Popup" type="Popup" parent="LeftSide"]
-visible = true
-margin_right = 40.0
-margin_bottom = 40.0
-
 [node name="StoryPanel" type="ColorRect" parent="."]
 visible = false
 anchor_top = 0.671
@@ -223,10 +217,10 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 6 )
 text = "Continue"
 
-[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel/Hide1" to="LeftSide/LeftSidePanel/TabContainer/Run and hide!" method="_on_Hide_pressed" binds= [ 1 ]]
-[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel/Hide2" to="LeftSide/LeftSidePanel/TabContainer/Run and hide!" method="_on_Hide_pressed" binds= [ 2 ]]
-[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel/Hide3" to="LeftSide/LeftSidePanel/TabContainer/Run and hide!" method="_on_Hide_pressed" binds= [ 3 ]]
-[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel/Hide4" to="LeftSide/LeftSidePanel/TabContainer/Run and hide!" method="_on_Hide_pressed" binds= [ 4 ]]
-[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/Run and hide!/HBoxContainer/LeftPanel/Search1" to="LeftSide/LeftSidePanel/TabContainer/Run and hide!" method="_on_Search_pressed"]
+[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide1" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide2" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide3" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 3 ]]
+[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide4" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 4 ]]
+[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Search1" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Search_pressed"]
 [connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/TekShop/LeftPanel/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="StoryPanel/Continue" to="." method="_on_Continue_pressed"]

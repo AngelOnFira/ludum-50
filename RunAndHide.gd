@@ -53,7 +53,6 @@ func survive_story():
 
 	# Check if we're at the end
 	if blackboard.try_to_survive_story_index >= len(blackboard.try_to_survive_story):
-		# They survived!
 		story = "You've already found the TekShop!"
 	else:
 		# Add the current survive story to the log
@@ -63,6 +62,13 @@ func survive_story():
 	if blackboard.try_to_survive_story_index == len(blackboard.try_to_survive_story):
 		# Show the TekShop tab
 		blackboard.emit_signal("show_tab", 1)
+
+		# End the tutorial
+		blackboard.tutorial = false
+
+		# Send a message to the player
+		blackboard.emit_signal("show_story", "You found... the TekShop? Why are you so excited about that? What will it help you acheive? You'll probably just die again.")
+		blackboard.emit_signal("queue_story", "Oh... I guess you'll remember that the TekShop exists. Hmm. This might be a problem.")
 
 	
 	# Increment the story index

@@ -28,6 +28,8 @@ var story = [
 	"I'm sure you'll be able to figure it out. That last hint wasn't super helpful. Aren't you trying to find a way to survive?",
 ]
 
+var story_queue = []
+
 var levels = [
 	0, # Laptop updates
 ]
@@ -46,6 +48,7 @@ func _ready():
 	# Attach signals
 	blackboard.connect("show_tab", self, "show_tab")
 	blackboard.connect("show_story", self, "show_story")
+	blackboard.connect("queue_story", self, "queue_story")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -78,14 +81,23 @@ func _process(delta):
 
 	# If time runs out, reset the timer to 10 seconds
 	if blackboard.timer <= 0:
+
+		print(story_queue)
 		
 		# Run the reset function in blackboard
 		blackboard.reset_game()
+
+		# If there are story elements in the queue, show them first
+		if len(story_queue) > 0:
+			var story_element = story_queue.pop_front()
+			blackboard.emit_signal("show_story", story_element)
 		
-		# Show story if there is anything new
-		if story_index < len(story):
-			blackboard.emit_signal("show_story", story[story_index])
-			story_index += 1
+		# Otherwise, just show the next story element
+		elif blackboard.tutorial:
+			# Show story if there is anything new
+			if story_index < len(story):
+				blackboard.emit_signal("show_story", story[story_index])
+				story_index += 1
 
 		$LeftSide/LeftSidePanel/CurrencyBox/Timer.text = "00:000"
 		
@@ -119,3 +131,8 @@ func show_story(story_text: String):
 
 	# Pause the game
 	get_tree().paused = true
+
+func queue_story(story_text: String):
+	print("Queueing story: " + story_text)
+	# Add the story to the queue
+	story_queue.append(story_text)
