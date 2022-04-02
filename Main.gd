@@ -18,7 +18,7 @@ var story = [
 	"Hmm, it seems that the world has ended. How about we give it another try?",
 ]
 
-var timer = 1000 * 10 # 10 seconds
+var timer = 1000 * 1 # 10 seconds
 
 var money: float = 0.0
 
@@ -57,14 +57,14 @@ func _process(delta):
 		milliseconds,
 	]
 	
-	$HBoxContainer/MidPanel/Timer.text = time_left
-	$HBoxContainer/LeftPanel/Money.text = str(amount)
+	$LeftSide/LeftSidePanel/Timer.text = time_left
+	$"LeftSide/LeftSidePanel/TabContainer/Run and hide!/LeftPanel/Money".text = str(amount)
 
 	# If time runs out, reset the timer to 10 seconds
 	if timer <= 0:
 		timer = 1000 * 10
-		$HBoxContainer/MidPanel/Timer.text = "10:0000"
-		$HBoxContainer/LeftPanel/Money.text = "0"
+		$LeftSide/LeftSidePanel/Timer.text = "10:0000"
+		$"LeftSide/LeftSidePanel/TabContainer/Run and hide!/LeftPanel/Money".text = "0"
 
 		# Show the StoryPanel
 		$StoryPanel.visible = true
