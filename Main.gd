@@ -53,6 +53,10 @@ func _ready():
 
 	# Animations
 	blackboard.connect("decrease_money", self, "decrease_money_animation")
+	blackboard.connect("increase_time", self, "increase_time_animation")
+	blackboard.connect("reset_timeline", self, "reset_timeline_animations")
+
+	blackboard.emit_signal("reset_timeline")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -149,5 +153,11 @@ func queue_story(story_text: String):
 	# Add the story to the queue
 	story_queue.append(story_text)
 
-func decrease_money_animation():
-	animation_player.play("MoneyDecrease")
+# func decrease_money_animation():
+# 	animation_player.play("DecreaseMoney")
+
+# func increase_time_animation():
+# 	animation_player.play("IncreaseTime")
+
+func reset_timeline_animations():
+	animation_player.play("MoveAsteroid")

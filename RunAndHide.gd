@@ -19,10 +19,12 @@ func _ready():
 	randomize()
 	update_log()
 
+	blackboard.connect("reset_timeline", self, "reset_timeline")
+
 var hide_story = [
 	"You hide under a tree, and find a dropped wallet!",
 	"As you scream, money falls from the sky!",
-	"As you think, you decide that you should try to survive. Well done, you have earned some money!"
+	"As you think, you decide that you should try to survive."
 ]
 
 func update_log():
@@ -42,7 +44,9 @@ func _on_Hide_pressed(extra_arg_0:int):
 	var money_found_string = " +$" + str(money_found) + ""
 
 	# Add the log entry
-	log_text.insert(0, hide_story[extra_arg_0 - 1] + money_found_string)
+	insert_log(hide_story[extra_arg_0 - 1] + money_found_string)
+	# Make sure the log is not too long
+
 
 	# If they pondered, add the survive button
 	if extra_arg_0 == 3:
@@ -52,7 +56,7 @@ func _on_Hide_pressed(extra_arg_0:int):
 	update_log()
 
 func _on_Search_pressed():
-	log_text.insert(0, survive_story())
+	insert_log(survive_story())
 
 	# Update the log
 	update_log()
@@ -65,7 +69,10 @@ func survive_story():
 		story = "You've already found the TekShop!"
 	else:
 		# Add the current survive story to the log
-		story = blackboard.try_to_survive_story[blackboard.try_to_survive_story_index]
+		var story_string = blackboard.try_to_survive_story[blackboard.try_to_survive_story_index]
+		var story_progress = blackboard.try_to_survive_story_index
+		var story_len = len(blackboard.try_to_survive_story)
+		story = story_string + "\n (" + str(story_progress) + "/" + str(story_len) + ")"
 
 	# If we're right at the end
 	if blackboard.try_to_survive_story_index == len(blackboard.try_to_survive_story):
@@ -84,3 +91,14 @@ func survive_story():
 	blackboard.try_to_survive_story_index += 1
 
 	return story
+
+func reset_timeline():
+	# Reset the log
+	log_text = []
+	update_log()
+
+func insert_log(text: String):
+	log_text.insert(0, text)
+
+	if len(log_text) > 5:
+		log_text.pop_back()

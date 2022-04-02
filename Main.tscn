@@ -397,6 +397,8 @@ anims/IncreaseTime = SubResource( 2 )
 anims/MoveAsteroid = SubResource( 3 )
 anims/RESET = SubResource( 4 )
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
 [connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide1" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide2" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 2 ]]
 [connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide3" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 3 ]]

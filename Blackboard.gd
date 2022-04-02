@@ -67,14 +67,18 @@ func _ready():
 
 
 func reset_game():
+	print("resetting")
 	try_to_survive_story_index = 0
 
 	# Reset the time
+	emit_signal("increase_time")
+
 	timer = 1000 * seconds_per_life
 
 	# Reset money
+	if money > 0:
+		emit_signal("decrease_money")
 	money = 0
-	emit_signal("decrease_money")
 
 	# Reset any non-remembered time
 	total_added_seconds_ephemeral = 0.0
@@ -96,6 +100,8 @@ signal queue_story(text)
 signal increase_time()
 
 signal decrease_money()
+
+signal reset_timeline()
 
 # Get the multiplier for time
 func update_time_multiplier():
