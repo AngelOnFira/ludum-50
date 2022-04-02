@@ -1,16 +1,26 @@
 extends Tabs
 
+onready var blackboard = get_node("/root/Blackboard")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
+var log_text = []
+onready var log_node = $HBoxContainer/HideLog
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	randomize()
 
+func _on_Hide_pressed(extra_arg_0:int):
+	# Add a random amount of money
+	blackboard.money += randi() % 40 + 10
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	# Add the log entry
+	if extra_arg_0 == 1:
+		log_text.insert(0, "Hide pressed")
+
+	# Update the text log
+	var log_text_string = ""
+	for i in range(len(log_text)):
+		log_text_string += log_text[i] + "\n"
+
+	log_node.text = log_text_string

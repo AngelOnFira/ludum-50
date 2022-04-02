@@ -8,10 +8,13 @@ extends Control
 # Design
 # 
 # Starting
-# - Buy laptop
-# - Get first few currencies
+# - Run and hide
+# - Scream and watch the asteroid
 # 
 # Mid
+# - Buy laptop
+# - Get first few currencies
+# - 
 # 
 
 var story = [
@@ -58,13 +61,13 @@ func _process(delta):
 	]
 	
 	$LeftSide/LeftSidePanel/Timer.text = time_left
-	$"LeftSide/LeftSidePanel/TabContainer/Run and hide!/LeftPanel/Money".text = str(amount)
+	# $"LeftSide/LeftSidePanel/TabContainer/Run and hide!/LeftPanel/Money".text = str(amount)
 
 	# If time runs out, reset the timer to 10 seconds
 	if timer <= 0:
 		timer = 1000 * 10
 		$LeftSide/LeftSidePanel/Timer.text = "10:0000"
-		$"LeftSide/LeftSidePanel/TabContainer/Run and hide!/LeftPanel/Money".text = "0"
+		# $"LeftSide/LeftSidePanel/TabContainer/Run and hide!/LeftPanel/Money".text = "0"
 
 		# Show the StoryPanel
 		$StoryPanel.visible = true
@@ -83,6 +86,8 @@ func _on_Continue_pressed():
 	$StoryPanel.visible = false
 
 	# Start the game again
-	get_tree().paused = true
+	get_tree().paused = false
+
+	print("resumed~!")
 
 
