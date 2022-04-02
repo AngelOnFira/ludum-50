@@ -3,6 +3,8 @@ extends Node
 
 var money: int = 0
 
+var timer = 1000 * 1 # 10 seconds
+
 # Survive story
 var try_to_survive_story_index = 0
 var try_to_survive_story = [
@@ -41,6 +43,15 @@ var try_to_survive_story = [
 func reset_game():
 	try_to_survive_story_index = 0
 
+	# Reset the time
+	timer = 1000 * 10
+
+	# Reset money
+	money = 0
+
+	# TODO animate money/time resetting
+
 
 # Signals
 signal show_tab(tab)
+signal show_story(text)

@@ -27,10 +27,13 @@ func update_log():
 
 func _on_Hide_pressed(extra_arg_0:int):
 	# Add a random amount of money
-	blackboard.money += randi() % 40 + 10
+	var money_found = randi() % 40 + 10
+	blackboard.money += money_found
+
+	var money_found_string = " +$" + str(money_found) + ""
 
 	# Add the log entry
-	log_text.insert(0, hide_story[extra_arg_0 - 1])
+	log_text.insert(0, hide_story[extra_arg_0 - 1] + money_found_string)
 
 	# If they pondered, add the survive button
 	if extra_arg_0 == 3:

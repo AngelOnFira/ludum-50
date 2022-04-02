@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Earth Large.jpeg" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/Fonts/Products.tres" type="DynamicFont" id=7]
 [ext_resource path="res://RunAndHide.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Fonts/Log.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Assets/Fonts/MoneyFont.tres" type="DynamicFont" id=10]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -38,12 +39,26 @@ anchor_bottom = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Timer" type="Label" parent="LeftSide/LeftSidePanel"]
+[node name="CurrencyBox" type="HBoxContainer" parent="LeftSide/LeftSidePanel"]
 margin_right = 593.0
+margin_bottom = 101.0
+
+[node name="Timer" type="Label" parent="LeftSide/LeftSidePanel/CurrencyBox"]
+margin_right = 293.0
 margin_bottom = 101.0
 custom_fonts/font = ExtResource( 6 )
 text = "10:000"
-align = 1
+
+[node name="Money" type="Label" parent="LeftSide/LeftSidePanel/CurrencyBox"]
+margin_left = 297.0
+margin_top = 20.0
+margin_right = 593.0
+margin_bottom = 81.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 10 )
+text = "$6969"
+align = 2
+valign = 1
 
 [node name="TabContainer" type="TabContainer" parent="LeftSide/LeftSidePanel"]
 margin_top = 105.0

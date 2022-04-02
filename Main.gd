@@ -20,13 +20,13 @@ onready var blackboard = get_node("/root/Blackboard")
 # - 
 # 
 
+var story_index = 0
 var story = [
 	"Hmm, it seems that the world has ended. How about we give it another try?",
+	"It ended again? Well, I guess we'll have to start over.",
+	"Ok, let's try again. I'll give you a hint: the world is ending.",
+	"I'm sure you'll be able to figure it out. That last hint wasn't super helpful. Aren't you trying to find a way to survive?",
 ]
-
-var timer = 1000 * 1 # 10 seconds
-
-var money: float = 0.0
 
 var levels = [
 	0, # Laptop updates
@@ -45,6 +45,7 @@ func _ready():
 
 	# Attach signals
 	blackboard.connect("show_tab", self, "show_tab")
+	blackboard.connect("show_story", self, "show_story")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -54,15 +55,15 @@ func _process(delta):
 	var laptop_per_second_per_level = 0.5
 	gain += 0.5 * delta * levels[0]
 	
-	money += gain
+	blackboard.money += gain
+	var amount = int(blackboard.money)
 	
-	var amount = int(money)
 
 	# Subtract time
-	timer -= 1000 * delta
+	blackboard.timer -= 1000 * delta
 
-	var seconds = int(timer / 1000)
-	var milliseconds = int(int(timer) % 1000)
+	var seconds = int(blackboard.timer / 1000)
+	var milliseconds = int(int(blackboard.timer) % 1000)
 
 	# Create time label
 	var time_left = "%0*d:%0*d" % [
@@ -72,24 +73,22 @@ func _process(delta):
 		milliseconds,
 	]
 	
-	$LeftSide/LeftSidePanel/Timer.text = time_left
-	# $"LeftSide/LeftSidePanel/TabContainer/Run and hide!/LeftPanel/Money".text = str(amount)
+	$LeftSide/LeftSidePanel/CurrencyBox/Timer.text = time_left
+	$LeftSide/LeftSidePanel/CurrencyBox/Money.text = "$" + str(amount)
 
 	# If time runs out, reset the timer to 10 seconds
-	if timer <= 0:
-		timer = 1000 * 10
-		$LeftSide/LeftSidePanel/Timer.text = "10:000"
-		# $"LeftSide/LeftSidePanel/TabContainer/Run and
-		# hide!/LeftPanel/Money".text = "0"
+	if blackboard.timer <= 0:
 		
 		# Run the reset function in blackboard
+		blackboard.reset_game()
+		
+		# Show story if there is anything new
+		if story_index < len(story):
+			blackboard.emit_signal("show_story", story[story_index])
+			story_index += 1
 
-		# Show the StoryPanel
-		$StoryPanel.visible = true
-
-		# Pause the game
-		get_tree().paused = true
-
+		$LeftSide/LeftSidePanel/CurrencyBox/Timer.text = "00:000"
+		
 
 
 func _on_Button_pressed():
@@ -103,8 +102,20 @@ func _on_Continue_pressed():
 	# Start the game again
 	get_tree().paused = false
 
-	print("resumed~!")
+	$LeftSide/LeftSidePanel/CurrencyBox/Timer.text = "10:000"
+
 
 
 func show_tab(tab: int):
 	tab_container.set_tab_hidden(tab, false)
+
+
+func show_story(story_text: String):
+	# Change the text
+	$StoryPanel/RichTextLabel.text = story_text
+
+	# Show the StoryPanel
+	$StoryPanel.visible = true
+
+	# Pause the game
+	get_tree().paused = true
