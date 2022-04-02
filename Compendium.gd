@@ -6,6 +6,9 @@ onready var blackboard = get_node("/root/Blackboard")
 # var a = 2
 # var b = "text"
 
+export var test: NodePath
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

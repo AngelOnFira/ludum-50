@@ -3,9 +3,10 @@ extends Node
 
 var money: int = 0
 
-# Vars for debugging
 var seconds_per_life: float = 10.0
-var laptop_price = 10
+var laptop_price = 1000
+
+var debug = true
 
 var timer = 1000 * seconds_per_life
 var time_multiplier = 1.0
@@ -25,35 +26,42 @@ var tutorial = true
 var try_to_survive_story_index = 0
 var try_to_survive_story = [
 	"You look around you, and don't find much of use. Better keep searching!",
-	# "You see the mall off in the distance.",
-	# "You run down the street.",
-	# "You keep running down the street.",
-	# "You keep running down the street. (It's getting closer!)",
-	# "You keep running down the street.",
-	# "You keep running down the street.",
-	# "You keep running down the street.",
-	# "You keep running down the street. (Just a bit further!)",
-	# "You keep running down the street.",
-	# "You keep running down the street.",
-	# "You keep running down the street.",
-	# "You keep running down the street.",
-	# "You keep running down the street.",
-	# "You keep running down the street.",
-	# "You keep running down the street.",
-	# "You keep running down the street.",
-	# "You keep running down the street. (You're really close!)",
-	# "You keep running down the street.",
-	# "You keep running down the street.",
-	# "You keep running down the street.",
-	# "You keep running down the street.",
-	# "You keep running down the street.",
-	# "You keep running down the street.",
-	# "You keep running down the street.",
-	# "You enter the mall.",
-	# "You start looking at stores",
+	"You see the mall off in the distance.",
+	"You run down the street.",
+	"You keep running down the street.",
+	"You keep running down the street. (It's getting closer!)",
+	"You keep running down the street.",
+	"You keep running down the street.",
+	"You keep running down the street.",
+	"You keep running down the street. (Just a bit further!)",
+	"You keep running down the street.",
+	"You keep running down the street.",
+	"You keep running down the street.",
+	"You keep running down the street.",
+	"You keep running down the street.",
+	"You keep running down the street.",
+	"You keep running down the street.",
+	"You keep running down the street.",
+	"You keep running down the street. (You're really close!)",
+	"You keep running down the street.",
+	"You keep running down the street.",
+	"You keep running down the street.",
+	"You keep running down the street.",
+	"You keep running down the street.",
+	"You keep running down the street.",
+	"You keep running down the street.",
+	"You enter the mall.",
+	"You start looking at stores",
 	"You find the TekShop!",
 ]
 
+func _ready():
+	if debug:
+		# Enable the debug numbers
+		seconds_per_life = 5
+		laptop_price = 10
+
+		try_to_survive_story = try_to_survive_story[0]
 
 
 func reset_game():
