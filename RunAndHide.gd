@@ -6,9 +6,18 @@ onready var blackboard = get_node("/root/Blackboard")
 var log_text = []
 onready var log_node = $HBoxContainer/LogBG/HideLog
 
+# Clicking docs
+# Source https://clickspeedtest.com/
+#
+# Fastest one finger 7.2
+# Fastest two fingers 12
+# Realistic one finger 5.6
+# Slow one finger 3.8
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+	update_log()
 
 var hide_story = [
 	"You hide under a tree, and find a dropped wallet!",

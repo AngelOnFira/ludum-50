@@ -3,9 +3,15 @@ extends Node
 
 var money: int = 0
 
-var seconds_per_life: int = 2
+var seconds_per_life: float = 10.0
 
 var timer = 1000 * seconds_per_life
+var time_multiplier = 1.0
+
+# Total time added from things that aren't in the character's memory
+var total_added_seconds_ephemeral = 0.0
+var total_remembered_seconds = 0.0
+
 
 # If they haven't found the TekShop yet
 var tutorial = true
@@ -54,6 +60,9 @@ func reset_game():
 	# Reset money
 	money = 0
 
+	# Reset any non-remembered time
+	total_added_seconds_ephemeral = 0.0
+
 	# TODO animate money/time resetting
 
 
@@ -67,3 +76,9 @@ signal show_story(text)
 
 # Queue a story message to show at the next death
 signal queue_story(text)
+
+# Get the multiplier for time
+func update_time_multiplier():
+	var total_added_time = total_added_seconds_ephemeral + total_remembered_seconds + seconds_per_life
+	# Update the time multiplier
+	time_multiplier = 1.0 + seconds_per_life / total_added_time

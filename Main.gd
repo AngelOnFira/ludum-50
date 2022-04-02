@@ -60,24 +60,11 @@ func _process(delta):
 	
 	blackboard.money += gain
 	var amount = int(blackboard.money)
-	
-
-	# Subtract time
-	blackboard.timer -= 1000 * delta
-
-	var seconds = int(blackboard.timer / 1000)
-	var milliseconds = int(int(blackboard.timer) % 1000)
-
-	# Create time label
-	var time_left = "%0*d:%0*d" % [
-		2,
-		seconds,
-		3,
-		milliseconds,
-	]
-	
-	$LeftSide/LeftSidePanel/CurrencyBox/Timer.text = time_left
 	$LeftSide/LeftSidePanel/CurrencyBox/Money.text = "$" + str(amount)
+
+	
+	# Make changes to time
+	change_time(delta)
 
 	# If time runs out, reset the timer to 10 seconds
 	if blackboard.timer <= 0:
@@ -100,8 +87,30 @@ func _process(delta):
 				story_index += 1
 
 		$LeftSide/LeftSidePanel/CurrencyBox/Timer.text = "00:000"
-		
 
+# Make the calculations of how the timer should change
+func change_time(delta):
+	var real_time_change: float = 1000 * delta
+
+	# Change based on the multiplier
+	blackboard.update_time_multiplier()
+	var multiplier_adjust: float = real_time_change / blackboard.time_multiplier
+
+	# Subtract time
+	blackboard.timer -= multiplier_adjust
+
+	var seconds = int(blackboard.timer / 1000)
+	var milliseconds = int(int(blackboard.timer) % 1000)
+
+	# Create time label
+	var time_left = "%0*d:%0*d" % [
+		2,
+		seconds,
+		3,
+		milliseconds,
+	]
+	
+	$LeftSide/LeftSidePanel/CurrencyBox/Timer.text = time_left
 
 func _on_Button_pressed():
 	levels[0] += 1

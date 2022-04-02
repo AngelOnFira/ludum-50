@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Earth Large.jpeg" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://RunAndHide.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Fonts/Log.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Assets/Fonts/MoneyFont.tres" type="DynamicFont" id=10]
+[ext_resource path="res://TekShop.gd" type="Script" id=11]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -68,6 +69,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 9 )
 
 [node name="AHHHH" type="Tabs" parent="LeftSide/LeftSidePanel/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -138,52 +140,44 @@ custom_fonts/normal_font = ExtResource( 9 )
 text = "asdfasd"
 
 [node name="TekShop" type="Tabs" parent="LeftSide/LeftSidePanel/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
+script = ExtResource( 11 )
 
-[node name="LeftPanel" type="VBoxContainer" parent="LeftSide/LeftSidePanel/TabContainer/TekShop"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftSide/LeftSidePanel/TabContainer/TekShop"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Money" type="Label" parent="LeftSide/LeftSidePanel/TabContainer/TekShop/LeftPanel"]
-margin_right = 585.0
-margin_bottom = 14.0
+[node name="LeftPanel" type="VBoxContainer" parent="LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer"]
+margin_right = 142.0
+margin_bottom = 459.0
 
-[node name="Button" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/TekShop/LeftPanel"]
-margin_top = 18.0
-margin_right = 585.0
-margin_bottom = 45.0
+[node name="Laptop" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LeftPanel"]
+margin_right = 142.0
+margin_bottom = 27.0
 custom_fonts/font = ExtResource( 7 )
-text = "Laptop 1"
+text = "Laptop $1000"
 
-[node name="Button2" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/TekShop/LeftPanel"]
-margin_top = 49.0
+[node name="LogBG" type="ColorRect" parent="LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer"]
+margin_left = 146.0
 margin_right = 585.0
-margin_bottom = 69.0
-text = "Upgrade 1"
+margin_bottom = 459.0
+size_flags_horizontal = 3
+color = Color( 0.215686, 0.215686, 0.215686, 1 )
 
-[node name="Button3" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/TekShop/LeftPanel"]
-margin_top = 73.0
-margin_right = 585.0
-margin_bottom = 93.0
-text = "Upgrade 1"
-
-[node name="Button4" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/TekShop/LeftPanel"]
-margin_top = 97.0
-margin_right = 585.0
-margin_bottom = 117.0
-text = "Upgrade 1"
-
-[node name="Button5" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/TekShop/LeftPanel"]
-margin_top = 121.0
-margin_right = 585.0
-margin_bottom = 141.0
-text = "Upgrade 1"
+[node name="HideLog" type="RichTextLabel" parent="LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LogBG"]
+margin_left = 4.0
+margin_right = 308.0
+margin_bottom = 434.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 7 )
+custom_fonts/normal_font = ExtResource( 9 )
+text = "asdfasd"
 
 [node name="StoryPanel" type="ColorRect" parent="."]
 visible = false
@@ -222,5 +216,5 @@ text = "Continue"
 [connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide3" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 3 ]]
 [connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide4" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 4 ]]
 [connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Search1" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Search_pressed"]
-[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/TekShop/LeftPanel/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LeftPanel/Laptop" to="LeftSide/LeftSidePanel/TabContainer/TekShop" method="_on_Laptop_pressed"]
 [connection signal="pressed" from="StoryPanel/Continue" to="." method="_on_Continue_pressed"]
