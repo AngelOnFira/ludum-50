@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Earth Large.jpeg" type="Texture" id=2]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -19,34 +20,39 @@ margin_bottom = 600.0
 margin_right = 77.0
 margin_bottom = 14.0
 
-[node name="Button" type="Button" parent="HBoxContainer/LeftPanel"]
+[node name="Timer" type="Label" parent="HBoxContainer/LeftPanel"]
 margin_top = 18.0
 margin_right = 77.0
-margin_bottom = 38.0
+margin_bottom = 32.0
+
+[node name="Button" type="Button" parent="HBoxContainer/LeftPanel"]
+margin_top = 36.0
+margin_right = 77.0
+margin_bottom = 56.0
 text = "Laptop 1"
 
 [node name="Button2" type="Button" parent="HBoxContainer/LeftPanel"]
-margin_top = 42.0
+margin_top = 60.0
 margin_right = 77.0
-margin_bottom = 62.0
+margin_bottom = 80.0
 text = "Upgrade 1"
 
 [node name="Button3" type="Button" parent="HBoxContainer/LeftPanel"]
-margin_top = 66.0
+margin_top = 84.0
 margin_right = 77.0
-margin_bottom = 86.0
+margin_bottom = 104.0
 text = "Upgrade 1"
 
 [node name="Button4" type="Button" parent="HBoxContainer/LeftPanel"]
-margin_top = 90.0
+margin_top = 108.0
 margin_right = 77.0
-margin_bottom = 110.0
+margin_bottom = 128.0
 text = "Upgrade 1"
 
 [node name="Button5" type="Button" parent="HBoxContainer/LeftPanel"]
-margin_top = 114.0
+margin_top = 132.0
 margin_right = 77.0
-margin_bottom = 134.0
+margin_bottom = 152.0
 text = "Upgrade 1"
 
 [node name="MidPanel" type="VBoxContainer" parent="HBoxContainer"]
@@ -58,5 +64,10 @@ margin_bottom = 600.0
 margin_left = 85.0
 margin_right = 85.0
 margin_bottom = 600.0
+
+[node name="EarthLarge" type="Sprite" parent="HBoxContainer/Planet"]
+position = Vector2( 740, 463 )
+scale = Vector2( 0.389734, 0.389734 )
+texture = ExtResource( 2 )
 
 [connection signal="pressed" from="HBoxContainer/LeftPanel/Button" to="." method="_on_Button_pressed"]

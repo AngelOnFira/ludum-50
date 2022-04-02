@@ -14,6 +14,8 @@ extends Control
 # Mid
 # 
 
+var timer = 1000 * 10 # 10 seconds
+
 var money: float = 0.0
 
 var levels = [
@@ -36,8 +38,17 @@ func _process(delta):
 	money += gain
 	
 	var amount = int(money)
+
+	# Subtract time
+	timer -= 1000 * delta
+
+	# Create time label
+	var time_left = "%s:%s" % [
+		str(int(timer / 1000 / 60)),
+		str(int(timer / 1000 % 60)),
+	]
 	
-	
+	$HBoxContainer/LeftPanel/Timer.text = time_left
 	$HBoxContainer/LeftPanel/Money.text = str(amount)
 
 
