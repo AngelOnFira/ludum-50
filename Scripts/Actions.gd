@@ -1,10 +1,13 @@
 extends Tabs
 
+### Automatic References Start ###
+onready var _hide_log: RichTextLabel = $HBoxContainer/VBoxContainer/LogBG/HideLog
+### Automatic References Stop ###
+
 onready var blackboard = get_node("/root/Blackboard")
 
 
 var log_text = []
-onready var log_node = $HBoxContainer/LogBG/HideLog
 
 # Clicking docs
 # Source https://clickspeedtest.com/
@@ -17,6 +20,9 @@ onready var log_node = $HBoxContainer/LogBG/HideLog
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+
+	# Set up the log
+	log_text = []
 	update_log()
 
 	blackboard.connect("reset_timeline", self, "reset_timeline")
@@ -33,7 +39,7 @@ func update_log():
 	for i in range(len(log_text)):
 		log_text_string += log_text[i] + "\n\n"
 
-	log_node.text = log_text_string
+	_hide_log.text = log_text_string
 	
 
 func _on_Hide_pressed(extra_arg_0:int):

@@ -321,14 +321,27 @@ margin_bottom = 48.0
 custom_fonts/font = ExtResource( 7 )
 text = "Explore"
 
-[node name="LogBG" type="ColorRect" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer"]
 margin_left = 154.0
 margin_right = 502.0
 margin_bottom = 447.0
 size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/VBoxContainer"]
+margin_right = 348.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 7 )
+text = "Log"
+
+[node name="LogBG" type="ColorRect" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/VBoxContainer"]
+margin_top = 20.0
+margin_right = 348.0
+margin_bottom = 447.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 color = Color( 0.215686, 0.215686, 0.215686, 1 )
 
-[node name="HideLog" type="RichTextLabel" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LogBG"]
+[node name="HideLog" type="RichTextLabel" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/VBoxContainer/LogBG"]
 margin_left = 4.0
 margin_right = 308.0
 margin_bottom = 434.0

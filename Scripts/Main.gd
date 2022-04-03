@@ -1,5 +1,9 @@
 extends Control
 
+### Automatic References Start ###
+onready var _hide_log: RichTextLabel = $MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LogBG/HideLog
+### Automatic References Stop ###
+
 onready var blackboard = get_node("/root/Blackboard")
 
 
@@ -124,6 +128,11 @@ func world_ended():
 
 		if story_index < len(story) - 1:
 			story_index += 1
+
+	# Otherwise, show a default message
+	else:
+		blackboard.emit_signal("show_story", "???", "The world has ended. Hope you don't care about the progress you lost >:)")
+
 
 # Make the calculations of how the timer should change
 func change_time(delta):
