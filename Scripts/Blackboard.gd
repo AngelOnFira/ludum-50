@@ -4,10 +4,10 @@ extends Node
 var money: int = 0
 
 # Story values
-var seconds_per_life: float = 10.0
+var seconds_per_life: float = 100.0
 var laptop_price = 1000
 
-var debug = false
+var debug = true
 
 # Time variables
 var timer = 1000 * seconds_per_life

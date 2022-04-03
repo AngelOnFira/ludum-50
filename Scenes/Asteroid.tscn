@@ -10,7 +10,7 @@ colors = PoolColorArray( 0.700195, 0.169382, 0.169382, 1, 0.922852, 0.570524, 0.
 
 [sub_resource type="Animation" id=8]
 resource_name = "MoveAsteroid"
-length = 10.0
+length = 11.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -123,5 +123,6 @@ scale_amount = 15.9
 color_ramp = SubResource( 5 )
 
 [node name="AsteroidAnimation" type="AnimationPlayer" parent="Asteroid"]
+pause_mode = 1
 anims/MoveAsteroid = SubResource( 8 )
 anims/RESET = SubResource( 9 )

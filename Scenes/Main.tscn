@@ -14,7 +14,6 @@
 
 [sub_resource type="Animation" id=10]
 resource_name = "IncreaseTime"
-loop = true
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:modulate:r")
 tracks/0/interp = 1
@@ -101,7 +100,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=12]
 resource_name = "DecreaseMoney"
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -132,7 +130,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=16]
 resource_name = "EndWorld"
-loop = true
+length = 1.1
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:color:r")
 tracks/0/interp = 1
@@ -433,8 +431,31 @@ custom_fonts/normal_font = ExtResource( 9 )
 text = "asdfasd"
 
 [node name="RightSide" parent="MainScreenDivision" instance=ExtResource( 2 )]
+pause_mode = 2
+
+[node name="Story" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+
+[node name="Intro" type="Control" parent="Story"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 14 )
+
+[node name="GameCover" type="ColorRect" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 1, 1, 1, 0 )
+
+[node name="GameCoverAnimation" type="AnimationPlayer" parent="GameCover"]
+anims/EndWorld = SubResource( 16 )
+anims/RESET = SubResource( 17 )
 
 [node name="GreyOutScreen" type="ColorRect" parent="."]
+pause_mode = 2
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -477,26 +498,6 @@ margin_top = -67.0
 custom_colors/font_color = Color( 0.454902, 0.780392, 0.396078, 1 )
 custom_fonts/font = ExtResource( 10 )
 text = "Continue"
-
-[node name="Story" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-mouse_filter = 2
-
-[node name="Intro" type="Control" parent="Story"]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 14 )
-
-[node name="GameCover" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-color = Color( 1, 1, 1, 0 )
-
-[node name="GameCoverAnimation" type="AnimationPlayer" parent="GameCover"]
-anims/EndWorld = SubResource( 16 )
-anims/RESET = SubResource( 17 )
 
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Hide1" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Hide_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Hide2" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Hide_pressed" binds= [ 2 ]]

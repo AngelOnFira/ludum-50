@@ -34,6 +34,9 @@ var levels = [
 	0, # Laptop updates
 ]
 
+# Track if we need to reset the world after a continue
+var world_just_ended = false
+
 onready var tab_container = $MainScreenDivision/LeftSide/LeftSidePanel/TabContainer
 
 # Animations
@@ -50,8 +53,9 @@ func _ready():
 	story_label.text = story[0]
 	
 	# Hide any tabs except the first
-	for i in range(1, tab_container.get_child_count()):
-		tab_container.set_tab_hidden(i, true)
+	if not blackboard.debug:
+		for i in range(1, tab_container.get_child_count()):
+			tab_container.set_tab_hidden(i, true)
 
 	# Attach signals
 	blackboard.connect("show_tab", self, "show_tab")
@@ -69,6 +73,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# If the world just ended, don't process
+	if world_just_ended:
+		return
+
 	var gain = 0
 	
 	var laptop_per_second_per_level = 0.5
@@ -83,28 +91,37 @@ func _process(delta):
 	change_time(delta)
 
 	# If time runs out, reset the timer to 10 seconds
-	if blackboard.timer <= 0:
+	if blackboard.timer <= 0 and not world_just_ended:
+		# Queue world ended
+		world_just_ended = true
+		print("bb")
+		get_tree().paused = true
+
+		blackboard.timer = 0
+		timer_node.text = "00:000"
 
 		# Play the white screen animation
 		$GameCover/GameCoverAnimation.play("EndWorld")
 
-		# Run the reset function in blackboard
-		blackboard.reset_game()
+		# Wait for the animation to finish
+		yield($GameCover/GameCoverAnimation, "animation_finished")
 
-		# If there are story elements in the queue, show them first
-		if len(story_queue) > 0:
-			var story_element = story_queue.pop_front()
-			blackboard.emit_signal("show_story", "???", story_element)
-		
-		# Otherwise, just show the next story element
-		elif blackboard.tutorial:
-			# Show story if there is anything new
-			blackboard.emit_signal("show_story", "???", story[story_index])
+		world_ended()
 
-			if story_index < len(story) - 1:
-				story_index += 1
 
-		timer_node.text = "00:000"
+func world_ended():
+	# If there are story elements in the queue, show them first
+	if len(story_queue) > 0:
+		var story_element = story_queue.pop_front()
+		blackboard.emit_signal("show_story", "???", story_element)
+	
+	# Otherwise, just show the next story element
+	elif blackboard.tutorial:
+		# Show story if there is anything new
+		blackboard.emit_signal("show_story", "???", story[story_index])
+
+		if story_index < len(story) - 1:
+			story_index += 1
 
 # Make the calculations of how the timer should change
 func change_time(delta):
@@ -130,6 +147,14 @@ func change_time(delta):
 	
 	timer_node.text = time_left
 
+	
+	# Change the asteroid animation based on the time
+	var progress = 10 - (blackboard.timer / 100 / blackboard.seconds_per_life)
+	print(blackboard.timer)
+	print(blackboard.seconds_per_life)
+	print(progress)
+	asteroid_animation_player.seek(progress, true)
+
 func _on_Button_pressed():
 	levels[0] += 1
 
@@ -138,10 +163,23 @@ func _on_Continue_pressed():
 	# Hide the panel
 	$GreyOutScreen.visible = false
 
+	
+	timer_node.text = "10:000"
+	
+	# If the world just ended
+	if world_just_ended:
+		$GameCover/GameCoverAnimation.play_backwards("EndWorld")
+
+		yield($GameCover/GameCoverAnimation, "animation_finished")
+		
+		# Run the reset function in blackboard
+		blackboard.reset_game()
+		
+		world_just_ended = false
+		
 	# Start the game again
 	get_tree().paused = false
-
-	timer_node.text = "10:000"
+	
 
 
 
@@ -180,3 +218,4 @@ func increase_time_animation():
 
 func reset_timeline_animations():
 	asteroid_animation_player.play("MoveAsteroid", -1, 1.0, false)
+	asteroid_animation_player.seek(0.0, true)
