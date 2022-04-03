@@ -1,6 +1,7 @@
 extends Tabs
 
 ### Automatic References Start ###
+onready var _explore: Button = $HBoxContainer/LeftPanel/Explore
 onready var _hide_log: RichTextLabel = $HBoxContainer/VBoxContainer/LogBG/HideLog
 ### Automatic References Stop ###
 
@@ -64,19 +65,23 @@ func survive_story():
 	var story = ""
 
 	# Check if we're at the end
-	if blackboard.try_to_survive_story_index >= len(blackboard.try_to_survive_story):
-		story = "You've already found the TekShop!"
+	if blackboard.try_to_survive_story_index >= blackboard.explore_length:
+		pass
 	else:
 		# Add the current survive story to the log
-		var story_string = blackboard.try_to_survive_story[blackboard.try_to_survive_story_index]
 		var story_progress = blackboard.try_to_survive_story_index
-		var story_len = len(blackboard.try_to_survive_story)
-		story = story_string + "\n (" + str(story_progress) + "/" + str(story_len) + ")"
+		var story_list = blackboard.try_to_survive_story
+		var story_string = story_list[randi() % story_list.size()]
+
+		story = "(" + str(story_progress) + "/" + str(blackboard.explore_length) + ") " + story_string
 
 	# If we're right at the end
-	if blackboard.try_to_survive_story_index == len(blackboard.try_to_survive_story):
+	if blackboard.try_to_survive_story_index == blackboard.explore_length:
 		# Show the TekShop tab
 		blackboard.emit_signal("show_tab", 1)
+
+		# Disable the explore button
+		_explore.disabled = true
 
 		# End the tutorial
 		blackboard.tutorial = false
@@ -114,5 +119,4 @@ func _on_Scream_pressed():
 		"PLEASE NOOOOO",
 		"WHYYYYY",
 	]
-	print(scream_lines[randi() % scream_lines.size()])
 	insert_log(scream_lines[randi() % scream_lines.size()])

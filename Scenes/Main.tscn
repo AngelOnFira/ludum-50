@@ -316,7 +316,7 @@ text = "Scream"
 [node name="Explore" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
 visible = false
 margin_top = 26.0
-margin_right = 100.0
+margin_right = 150.0
 margin_bottom = 48.0
 custom_fonts/font = ExtResource( 7 )
 text = "Explore"

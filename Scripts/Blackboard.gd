@@ -15,6 +15,7 @@ var time_multiplier = 1.0
 
 # Story variables
 var game_loop = 0
+var explore_length = 25
 
 # Total time added from things that aren't in the character's memory
 var total_added_seconds_ephemeral = 0.0
@@ -29,34 +30,9 @@ var tutorial = true
 # Survive story
 var try_to_survive_story_index = 0
 var try_to_survive_story = [
-	"You look around you, and don't find much of use. Better keep searching!",
-	"You see the mall off in the distance.",
-	"You run down the street.",
-	"You keep running down the street.",
-	"You keep running down the street. (It's getting closer!)",
-	"You keep running down the street.",
-	"You keep running down the street.",
-	"You keep running down the street.",
-	"You keep running down the street. (Just a bit further!)",
-	"You keep running down the street.",
-	"You keep running down the street.",
-	"You keep running down the street.",
-	"You keep running down the street.",
-	"You keep running down the street.",
-	"You keep running down the street.",
-	"You keep running down the street.",
-	"You keep running down the street.",
-	"You keep running down the street. (You're really close!)",
-	"You keep running down the street.",
-	"You keep running down the street.",
-	"You keep running down the street.",
-	"You keep running down the street.",
-	"You keep running down the street.",
-	"You keep running down the street.",
-	"You keep running down the street.",
-	"You enter the mall.",
-	"You start looking at stores",
-	"You find the TekShop!",
+	"Nothing here...",
+	"A... rock?",
+	"It's the local pizza shop!",
 ]
 
 func _ready():
