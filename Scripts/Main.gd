@@ -2,13 +2,14 @@ extends Control
 
 ### Automatic References Start ###
 onready var _explore: Button = $MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Explore
-onready var _game_cover_animation: AnimationPlayer = $AboveAll/GameCover/GameCoverAnimation
-onready var _grey_out_screen: ColorRect = $AboveAll/GreyOutScreen
+onready var _game_cover: ColorRect = $AboveAll/ScreenSize/GameCover
+onready var _game_cover_animation: AnimationPlayer = $AboveAll/ScreenSize/GameCover/GameCoverAnimation
+onready var _grey_out_screen: ColorRect = $AboveAll/ScreenSize/GreyOutScreen
 onready var _hide_log: RichTextLabel = $MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/VBoxContainer/LogBG/HideLog
 onready var _money: Label = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Money
 onready var _money_animation: AnimationPlayer = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Money/MoneyAnimation
 onready var _money_increase: Control = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Money/MoneyIncrease
-onready var _story_label: RichTextLabel = $AboveAll/GreyOutScreen/StoryPanel/StoryLabel
+onready var _story_label: RichTextLabel = $AboveAll/ScreenSize/GreyOutScreen/StoryPanel/StoryLabel
 onready var _tab_container: TabContainer = $MainScreenDivision/LeftSide/LeftSidePanel/TabContainer
 onready var _timer: Label = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Timer
 onready var _timer_animation: AnimationPlayer = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Timer/TimerAnimation

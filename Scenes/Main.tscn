@@ -453,23 +453,31 @@ mouse_filter = 2
 [node name="Intro" type="Control" parent="Story"]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 script = ExtResource( 14 )
 
 [node name="AboveAll" type="Node2D" parent="."]
 z_index = 20
 
-[node name="GameCover" type="ColorRect" parent="AboveAll"]
+[node name="ScreenSize" type="Control" parent="AboveAll"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1024, 600 )
+mouse_filter = 2
+
+[node name="GameCover" type="ColorRect" parent="AboveAll/ScreenSize"]
 pause_mode = 2
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 1, 1, 1, 0 )
 
-[node name="GameCoverAnimation" type="AnimationPlayer" parent="AboveAll/GameCover"]
+[node name="GameCoverAnimation" type="AnimationPlayer" parent="AboveAll/ScreenSize/GameCover"]
 anims/EndWorld = SubResource( 16 )
 anims/RESET = SubResource( 17 )
 
-[node name="GreyOutScreen" type="ColorRect" parent="AboveAll"]
+[node name="GreyOutScreen" type="ColorRect" parent="AboveAll/ScreenSize"]
 pause_mode = 2
 visible = false
 anchor_right = 1.0
@@ -477,7 +485,7 @@ anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 0.694118 )
 
-[node name="StoryPanel" type="ColorRect" parent="AboveAll/GreyOutScreen"]
+[node name="StoryPanel" type="ColorRect" parent="AboveAll/ScreenSize/GreyOutScreen"]
 anchor_top = 0.339
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -485,7 +493,7 @@ margin_bottom = 103.4
 rect_min_size = Vector2( 0, 200 )
 mouse_filter = 2
 
-[node name="StoryLabel" type="RichTextLabel" parent="AboveAll/GreyOutScreen/StoryPanel"]
+[node name="StoryLabel" type="RichTextLabel" parent="AboveAll/ScreenSize/GreyOutScreen/StoryPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
@@ -503,7 +511,7 @@ bbcode_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 "
 
-[node name="Continue" type="Button" parent="AboveAll/GreyOutScreen/StoryPanel"]
+[node name="Continue" type="Button" parent="AboveAll/ScreenSize/GreyOutScreen/StoryPanel"]
 pause_mode = 2
 anchor_left = 1.0
 anchor_top = 1.0
@@ -519,4 +527,4 @@ text = "Continue"
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Explore" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Search_pressed"]
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Loot" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Loot_pressed"]
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LeftPanel/Laptop" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop" method="_on_Laptop_pressed"]
-[connection signal="pressed" from="AboveAll/GreyOutScreen/StoryPanel/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="AboveAll/ScreenSize/GreyOutScreen/StoryPanel/Continue" to="." method="_on_Continue_pressed"]
