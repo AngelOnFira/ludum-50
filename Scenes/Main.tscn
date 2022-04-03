@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/Fonts/HelpFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Assets/Fonts/TimerFont.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Assets/Fonts/Products.tres" type="DynamicFont" id=7]
-[ext_resource path="res://Scripts/RunAndHide.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Actions.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Fonts/Log.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Assets/Fonts/MoneyFont.tres" type="DynamicFont" id=10]
 [ext_resource path="res://Scripts/TekShop.gd" type="Script" id=11]
@@ -303,47 +303,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="LeftPanel" type="VBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer"]
-margin_right = 244.0
+margin_right = 150.0
 margin_bottom = 447.0
+rect_min_size = Vector2( 150, 0 )
 
-[node name="Hide1" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
-margin_right = 244.0
+[node name="Scream" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
+margin_right = 150.0
 margin_bottom = 22.0
 custom_fonts/font = ExtResource( 7 )
-text = "Run and hide!"
+text = "Scream"
 
-[node name="Hide2" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
+[node name="Explore" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
+visible = false
 margin_top = 26.0
-margin_right = 244.0
+margin_right = 100.0
 margin_bottom = 48.0
 custom_fonts/font = ExtResource( 7 )
-text = "Scream on the streets"
-
-[node name="Hide3" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
-margin_top = 52.0
-margin_right = 244.0
-margin_bottom = 74.0
-custom_fonts/font = ExtResource( 7 )
-text = "Ponder the situation"
-
-[node name="Hide4" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
-visible = false
-margin_top = 93.0
-margin_right = 243.0
-margin_bottom = 120.0
-custom_fonts/font = ExtResource( 7 )
-text = "Scream on the streets"
-
-[node name="Search1" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
-visible = false
-margin_top = 124.0
-margin_right = 243.0
-margin_bottom = 151.0
-custom_fonts/font = ExtResource( 7 )
-text = "Try to survive"
+text = "Explore"
 
 [node name="LogBG" type="ColorRect" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer"]
-margin_left = 248.0
+margin_left = 154.0
 margin_right = 502.0
 margin_bottom = 447.0
 size_flags_horizontal = 3
@@ -499,10 +478,7 @@ custom_colors/font_color = Color( 0.454902, 0.780392, 0.396078, 1 )
 custom_fonts/font = ExtResource( 10 )
 text = "Continue"
 
-[connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Hide1" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Hide_pressed" binds= [ 1 ]]
-[connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Hide2" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Hide_pressed" binds= [ 2 ]]
-[connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Hide3" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Hide_pressed" binds= [ 3 ]]
-[connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Hide4" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Hide_pressed" binds= [ 4 ]]
-[connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Search1" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Search_pressed"]
+[connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Scream" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Scream_pressed"]
+[connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Explore" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Search_pressed"]
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LeftPanel/Laptop" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop" method="_on_Laptop_pressed"]
 [connection signal="pressed" from="GreyOutScreen/StoryPanel/Continue" to="." method="_on_Continue_pressed"]

@@ -47,19 +47,12 @@ func _on_Hide_pressed(extra_arg_0:int):
 	insert_log(hide_story[extra_arg_0 - 1] + money_found_string)
 	# Make sure the log is not too long
 
-
 	# If they pondered, add the survive button
 	if extra_arg_0 == 3:
 		$HBoxContainer/LeftPanel/Search1.visible = true
 
-	# Update the log
-	update_log()
-
 func _on_Search_pressed():
 	insert_log(survive_story())
-
-	# Update the log
-	update_log()
 
 func survive_story():
 	var story = ""
@@ -102,3 +95,18 @@ func insert_log(text: String):
 
 	if len(log_text) > 5:
 		log_text.pop_back()
+
+	# Update the log
+	update_log()
+
+
+func _on_Scream_pressed():
+	var scream_lines = [
+		"AHHHHHH",
+		"GAAHHHH",
+		"AAAAHHHHH",
+		"PLEASE NOOOOO",
+		"WHYYYYY",
+	]
+	print(scream_lines[randi() % scream_lines.size()])
+	insert_log(scream_lines[randi() % scream_lines.size()])

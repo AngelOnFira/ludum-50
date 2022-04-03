@@ -48,6 +48,9 @@ onready var timer_node = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/
 onready var money_node = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Money
 onready var story_label = $GreyOutScreen/StoryPanel/StoryLabel
 
+# Buttons
+onready var explore_button = $MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Explore
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	story_label.text = story[0]
@@ -94,7 +97,6 @@ func _process(delta):
 	if blackboard.timer <= 0 and not world_just_ended:
 		# Queue world ended
 		world_just_ended = true
-		print("bb")
 		get_tree().paused = true
 
 		blackboard.timer = 0
@@ -150,9 +152,6 @@ func change_time(delta):
 	
 	# Change the asteroid animation based on the time
 	var progress = 10 - (blackboard.timer / 100 / blackboard.seconds_per_life)
-	print(blackboard.timer)
-	print(blackboard.seconds_per_life)
-	print(progress)
 	asteroid_animation_player.seek(progress, true)
 
 func _on_Button_pressed():
@@ -176,6 +175,8 @@ func _on_Continue_pressed():
 		blackboard.reset_game()
 		
 		world_just_ended = false
+
+		check_shows()
 		
 	# Start the game again
 	get_tree().paused = false
@@ -219,3 +220,9 @@ func increase_time_animation():
 func reset_timeline_animations():
 	asteroid_animation_player.play("MoveAsteroid", -1, 1.0, false)
 	asteroid_animation_player.seek(0.0, true)
+
+# See if there is anything else we should reveal to the player
+func check_shows():
+	# If the stage is...
+	if blackboard.game_loop == 1:
+		explore_button.visible = true
