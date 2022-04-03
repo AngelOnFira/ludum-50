@@ -1,12 +1,22 @@
 extends Control
 
 ### Automatic References Start ###
-onready var _hide_log: RichTextLabel = $MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LogBG/HideLog
+onready var _explore: Button = $MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Explore
+onready var _game_cover_animation: AnimationPlayer = $AboveAll/GameCover/GameCoverAnimation
+onready var _grey_out_screen: ColorRect = $AboveAll/GreyOutScreen
+onready var _hide_log: RichTextLabel = $MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/VBoxContainer/LogBG/HideLog
+onready var _money: Label = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Money
+onready var _money_animation: AnimationPlayer = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Money/MoneyAnimation
+onready var _money_increase: Control = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Money/MoneyIncrease
+onready var _story_label: RichTextLabel = $AboveAll/GreyOutScreen/StoryPanel/StoryLabel
+onready var _tab_container: TabContainer = $MainScreenDivision/LeftSide/LeftSidePanel/TabContainer
+onready var _timer: Label = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Timer
+onready var _timer_animation: AnimationPlayer = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Timer/TimerAnimation
 ### Automatic References Stop ###
 
 onready var blackboard = get_node("/root/Blackboard")
 
-
+onready var dosh = preload("res://Scenes/Dosh.tscn")
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -41,28 +51,17 @@ var levels = [
 # Track if we need to reset the world after a continue
 var world_just_ended = false
 
-onready var tab_container = $MainScreenDivision/LeftSide/LeftSidePanel/TabContainer
-
-# Animations
-onready var money_animation_player = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Money/MoneyAnimation
-onready var timer_animation_player = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Timer/TimerAnimation
-onready var asteroid_animation_player = $MainScreenDivision/RightSide/Asteroid/AsteroidAnimation
-
-onready var timer_node = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Timer
-onready var money_node = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Money
-onready var story_label = $GreyOutScreen/StoryPanel/StoryLabel
-
-# Buttons
-onready var explore_button = $MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Explore
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	story_label.text = story[0]
+	_story_label.text = story[0]
 	
 	# Hide any tabs except the first
 	if not blackboard.debug:
-		for i in range(1, tab_container.get_child_count()):
-			tab_container.set_tab_hidden(i, true)
+		for i in range(1, _tab_container.get_child_count()):
+			_tab_container.set_tab_hidden(i, true)
+
+		
+
 
 	# Attach signals
 	blackboard.connect("show_tab", self, "show_tab")
@@ -74,8 +73,13 @@ func _ready():
 	blackboard.connect("increase_time", self, "increase_time_animation")
 	blackboard.connect("reset_timeline", self, "reset_timeline_animations")
 
+	# Labels
+	blackboard.connect("add_money", self, "add_money")
+
 	blackboard.emit_signal("reset_timeline")
 	blackboard.emit_signal("show_story", "Thoughts", "Today is the last day.")
+
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -91,7 +95,7 @@ func _process(delta):
 	
 	blackboard.money += gain
 	var amount = int(blackboard.money)
-	money_node.text = "$" + str(amount)
+	_money.text = "$" + str(amount)
 
 	
 	# Make changes to time
@@ -104,13 +108,13 @@ func _process(delta):
 		get_tree().paused = true
 
 		blackboard.timer = 0
-		timer_node.text = "00:000"
+		_timer.text = "00:000"
 
 		# Play the white screen animation
-		$GameCover/GameCoverAnimation.play("EndWorld")
+		_game_cover_animation.play("EndWorld")
 
 		# Wait for the animation to finish
-		yield($GameCover/GameCoverAnimation, "animation_finished")
+		yield(_game_cover_animation, "animation_finished")
 
 		world_ended()
 
@@ -156,7 +160,7 @@ func change_time(delta):
 		milliseconds,
 	]
 	
-	timer_node.text = time_left
+	_timer.text = time_left
 
 	
 	# Change the asteroid animation based on the time
@@ -172,13 +176,13 @@ func _on_Continue_pressed():
 	$GreyOutScreen.visible = false
 
 	
-	timer_node.text = "10:000"
+	_timer.text = "10:000"
 	
 	# If the world just ended
 	if world_just_ended:
-		$GameCover/GameCoverAnimation.play_backwards("EndWorld")
+		_game_cover_animation.play_backwards("EndWorld")
 
-		yield($GameCover/GameCoverAnimation, "animation_finished")
+		yield(_game_cover_animation, "animation_finished")
 		
 		# Run the reset function in blackboard
 		blackboard.reset_game()
@@ -194,7 +198,7 @@ func _on_Continue_pressed():
 
 
 func show_tab(tab: int):
-	tab_container.set_tab_hidden(tab, false)
+	_tab_container.set_tab_hidden(tab, false)
 
 
 func show_story(speaker: String, story_text: String):
@@ -208,7 +212,7 @@ func show_story(speaker: String, story_text: String):
 		speaker_coloured = "[color=green]%s[/color]" % speaker
 
 	# Change the text
-	story_label.bbcode_text = speaker_coloured + ":\n" + story_text
+	_story_label.bbcode_text = speaker_coloured + ":\n" + story_text
 
 	# Show the StoryPanel
 	$GreyOutScreen.visible = true
@@ -221,10 +225,10 @@ func queue_story(story_text: String):
 	story_queue.append(story_text)
 
 func decrease_money_animation():
-	money_animation_player.play("DecreaseMoney")
+	_money_animation.play("DecreaseMoney")
 
 func increase_time_animation():
-	timer_animation_player.play("IncreaseTime")
+	_timer_animation.play("IncreaseTime")
 
 func reset_timeline_animations():
 	asteroid_animation_player.play("MoveAsteroid", -1, 1.0, false)
@@ -234,4 +238,18 @@ func reset_timeline_animations():
 func check_shows():
 	# If the stage is...
 	if blackboard.game_loop == 1:
-		explore_button.visible = true
+		_explore.visible = true
+
+func add_money(amount: int):
+	var new_dosh = dosh.instance()
+	new_dosh.amount = amount
+
+	# Move a bit randomly
+	new_dosh.translate(Vector2(
+		randi() % 100 - 50,
+		0
+	))
+	_money_increase.add_child(new_dosh)
+
+	blackboard.money += amount
+	_money.text = "$" + str(blackboard.money)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Asteroid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/System.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Fonts/HelpFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Assets/Fonts/TimerFont.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Assets/Fonts/Products.tres" type="DynamicFont" id=7]
@@ -10,7 +11,7 @@
 [ext_resource path="res://Assets/Fonts/MoneyFont.tres" type="DynamicFont" id=10]
 [ext_resource path="res://Scripts/TekShop.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/Compendium.gd" type="Script" id=12]
-[ext_resource path="res://Scripts/Intro.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/Story/Intro.gd" type="Script" id=14]
 
 [sub_resource type="Animation" id=10]
 resource_name = "IncreaseTime"
@@ -251,13 +252,15 @@ size_flags_horizontal = 3
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="CurrencyBox" type="HBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel"]
+[node name="CurrencyBox" type="Control" parent="MainScreenDivision/LeftSide/LeftSidePanel"]
 margin_right = 510.0
-margin_bottom = 101.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
 
 [node name="Timer" type="Label" parent="MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox"]
+anchor_bottom = 1.0
 margin_right = 293.0
-margin_bottom = 101.0
 custom_fonts/font = ExtResource( 6 )
 text = "10:000"
 
@@ -266,11 +269,13 @@ anims/IncreaseTime = SubResource( 10 )
 anims/RESET = SubResource( 11 )
 
 [node name="Money" type="Label" parent="MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox"]
-margin_left = 297.0
-margin_top = 20.0
-margin_right = 510.0
-margin_bottom = 81.0
-size_flags_horizontal = 3
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -213.0
+margin_top = -30.5
+margin_bottom = 30.5
 custom_fonts/font = ExtResource( 10 )
 text = "$6969"
 align = 2
@@ -280,8 +285,18 @@ valign = 1
 anims/DecreaseMoney = SubResource( 12 )
 anims/RESET = SubResource( 15 )
 
+[node name="MoneyIncrease" type="Control" parent="MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Money"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+
 [node name="TabContainer" type="TabContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel"]
-margin_top = 105.0
+margin_top = 104.0
 margin_right = 510.0
 margin_bottom = 600.0
 size_flags_vertical = 3
@@ -304,7 +319,7 @@ anchor_bottom = 1.0
 
 [node name="LeftPanel" type="VBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer"]
 margin_right = 150.0
-margin_bottom = 447.0
+margin_bottom = 448.0
 rect_min_size = Vector2( 150, 0 )
 
 [node name="Scream" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
@@ -321,10 +336,18 @@ margin_bottom = 48.0
 custom_fonts/font = ExtResource( 7 )
 text = "Explore"
 
+[node name="Loot" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
+visible = false
+margin_top = 26.0
+margin_right = 150.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 7 )
+text = "Loot"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer"]
 margin_left = 154.0
 margin_right = 502.0
-margin_bottom = 447.0
+margin_bottom = 448.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/VBoxContainer"]
@@ -336,7 +359,7 @@ text = "Log"
 [node name="LogBG" type="ColorRect" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/VBoxContainer"]
 margin_top = 20.0
 margin_right = 348.0
-margin_bottom = 447.0
+margin_bottom = 448.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.215686, 0.215686, 0.215686, 1 )
@@ -366,31 +389,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="LeftPanel" type="VBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer"]
-margin_right = 142.0
+margin_right = 154.0
 margin_bottom = 459.0
 
 [node name="Laptop" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LeftPanel"]
-margin_right = 142.0
-margin_bottom = 27.0
+margin_right = 154.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 7 )
 text = "Laptop $1000"
 
-[node name="LogBG" type="ColorRect" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer"]
-margin_left = 146.0
-margin_right = 585.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer"]
+margin_left = 158.0
+margin_right = 502.0
 margin_bottom = 459.0
 size_flags_horizontal = 3
-color = Color( 0.215686, 0.215686, 0.215686, 1 )
 
-[node name="HideLog" type="RichTextLabel" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LogBG"]
-margin_left = 4.0
-margin_right = 308.0
-margin_bottom = 434.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/mono_font = ExtResource( 7 )
-custom_fonts/normal_font = ExtResource( 9 )
-text = "asdfasd"
+[node name="Label" type="Label" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/VBoxContainer"]
+margin_right = 344.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 7 )
+text = "Homelab"
+
+[node name="System" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/VBoxContainer" instance=ExtResource( 3 )]
 
 [node name="Compendium" type="Tabs" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer"]
 visible = false
@@ -435,25 +455,28 @@ margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 14 )
 
-[node name="GameCover" type="ColorRect" parent="."]
+[node name="AboveAll" type="Node2D" parent="."]
+z_index = 20
+
+[node name="GameCover" type="ColorRect" parent="AboveAll"]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 1, 1, 1, 0 )
 
-[node name="GameCoverAnimation" type="AnimationPlayer" parent="GameCover"]
+[node name="GameCoverAnimation" type="AnimationPlayer" parent="AboveAll/GameCover"]
 anims/EndWorld = SubResource( 16 )
 anims/RESET = SubResource( 17 )
 
-[node name="GreyOutScreen" type="ColorRect" parent="."]
+[node name="GreyOutScreen" type="ColorRect" parent="AboveAll"]
 pause_mode = 2
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.694118 )
 
-[node name="StoryPanel" type="ColorRect" parent="GreyOutScreen"]
+[node name="StoryPanel" type="ColorRect" parent="AboveAll/GreyOutScreen"]
 anchor_top = 0.339
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -461,7 +484,7 @@ margin_bottom = 103.4
 rect_min_size = Vector2( 0, 200 )
 mouse_filter = 2
 
-[node name="StoryLabel" type="RichTextLabel" parent="GreyOutScreen/StoryPanel"]
+[node name="StoryLabel" type="RichTextLabel" parent="AboveAll/GreyOutScreen/StoryPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
@@ -479,7 +502,7 @@ bbcode_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 "
 
-[node name="Continue" type="Button" parent="GreyOutScreen/StoryPanel"]
+[node name="Continue" type="Button" parent="AboveAll/GreyOutScreen/StoryPanel"]
 pause_mode = 2
 anchor_left = 1.0
 anchor_top = 1.0
@@ -493,5 +516,6 @@ text = "Continue"
 
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Scream" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Scream_pressed"]
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Explore" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Search_pressed"]
+[connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Loot" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Loot_pressed"]
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LeftPanel/Laptop" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop" method="_on_Laptop_pressed"]
-[connection signal="pressed" from="GreyOutScreen/StoryPanel/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="AboveAll/GreyOutScreen/StoryPanel/Continue" to="." method="_on_Continue_pressed"]
