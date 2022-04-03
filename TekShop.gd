@@ -19,7 +19,7 @@ func _on_Laptop_pressed():
 		blackboard.money -= blackboard.laptop_price
 
 		# Send a message about the laptop
-		blackboard.emit_signal("show_story", "You bought a laptop I see. What are you looking up? Medetation techniques? Do you really think you can slow down time enough to matter?")
+		blackboard.emit_signal("show_story", "???", "You bought a laptop I see. What are you looking up? Medetation techniques? Do you really think you can slow down time enough to matter?")
 
 		# Add the entry to the compendium
 		blackboard.add_to_compendium(

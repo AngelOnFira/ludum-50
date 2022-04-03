@@ -13,15 +13,15 @@ func _process(delta):
 	if blackboard.game_loop > 0:
 		return
 
-	if blackboard.timer < 8 and shown[0] == false:
+	if blackboard.timer < 8 * 1000 and shown[0] == false:
 		shown[0] = true
 		blackboard.emit_signal(
 			"show_story",
 			"Thoughts",
-			"Scientists have been warning about the asteroid for months"
+			"Scientists warned us about the asteroid for months"
 		)
 
-	if blackboard.timer < 6 and shown[1] == false:
+	if blackboard.timer < 6 * 1000 and shown[1] == false:
 		shown[1] = true
 		blackboard.emit_signal(
 			"show_story",

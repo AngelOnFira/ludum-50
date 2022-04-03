@@ -22,10 +22,10 @@ onready var blackboard = get_node("/root/Blackboard")
 
 var story_index = 0
 var story = [
-	"???:\nHmm, it seems that the world has ended. How about we give it another try?",
-	"???:\nIt ended again? Well, I guess we'll have to start over.",
-	"???:\nOk, let's try again. I'll give you a hint: the world is ending.",
-	"???:\nI'm sure you'll be able to figure it out. That last hint wasn't super helpful. Aren't you trying to find a way to survive?",
+	"Hmm, it seems that the world has ended. How about we give it another try?",
+	"It ended again? Well, I guess we'll have to start over.",
+	"Ok, let's try again. I'll give you a hint: the world is ending.",
+	"I'm sure you'll be able to figure it out. That last hint wasn't super helpful. Aren't you trying to find a way to survive?",
 ]
 
 var story_queue = []
@@ -63,7 +63,7 @@ func _ready():
 	blackboard.connect("reset_timeline", self, "reset_timeline_animations")
 
 	blackboard.emit_signal("reset_timeline")
-	blackboard.emit_signal("show_story", "Thoughts:\nThe scientist have watched this asteroid coming towards Earth for MONTHS! I guess these are the final few seconds we have...")
+	blackboard.emit_signal("show_story", "Thoughts", "The scientist have watched this asteroid coming towards Earth for MONTHS! I guess these are the final few seconds we have...")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -92,12 +92,12 @@ func _process(delta):
 		# If there are story elements in the queue, show them first
 		if len(story_queue) > 0:
 			var story_element = story_queue.pop_front()
-			blackboard.emit_signal("show_story", story_element)
+			blackboard.emit_signal("show_story", "???", story_element)
 		
 		# Otherwise, just show the next story element
 		elif blackboard.tutorial:
 			# Show story if there is anything new
-			blackboard.emit_signal("show_story", story[story_index])
+			blackboard.emit_signal("show_story", "???", story[story_index])
 
 			if story_index < len(story) - 1:
 				story_index += 1
@@ -147,9 +147,18 @@ func show_tab(tab: int):
 	tab_container.set_tab_hidden(tab, false)
 
 
-func show_story(story_text: String):
+func show_story(speaker: String, story_text: String):
+	var speaker_coloured = ""
+
+	if speaker == "Thoughts":
+		speaker_coloured = "[color=blue]%s[/color]" % speaker
+	elif speaker == "???":
+		speaker_coloured = "[color=red]%s[/color]" % speaker
+	else:
+		speaker_coloured = "[color=green]%s[/color]" % speaker
+
 	# Change the text
-	$StoryPanel/RichTextLabel.text = story_text
+	$StoryPanel/RichTextLabel.bbcode_text = speaker_coloured + ":\n" + story_text
 
 	# Show the StoryPanel
 	$StoryPanel.visible = true

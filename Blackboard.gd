@@ -99,10 +99,10 @@ func reset_game():
 signal show_tab(tab)
 
 # Show a story message right now
-signal show_story(text)
+signal show_story(speaker, text)
 
 # Queue a story message to show at the next death
-signal queue_story(text)
+signal queue_story(speaker, text)
 
 signal increase_time()
 

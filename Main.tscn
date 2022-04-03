@@ -442,6 +442,8 @@ margin_top = 105.0
 margin_right = 510.0
 margin_bottom = 600.0
 size_flags_vertical = 3
+custom_colors/font_color_bg = Color( 0, 0, 0, 1 )
+custom_colors/font_color_fg = Color( 1, 0.901961, 0.298039, 1 )
 custom_fonts/font = ExtResource( 9 )
 
 [node name="Actions" type="Tabs" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer"]
@@ -664,8 +666,6 @@ custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_fonts/mono_font = ExtResource( 5 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "afasdfsadfasdasdsdafasdfsa"
-text = "afasdfsadfasdasdsdafasdfsa"
 
 [node name="Continue" type="Button" parent="StoryPanel"]
 pause_mode = 2

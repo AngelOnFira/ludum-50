@@ -83,8 +83,8 @@ func survive_story():
 		blackboard.tutorial = false
 
 		# Send a message to the player
-		blackboard.emit_signal("show_story", "???:\nYou found... the TekShop? Why are you so excited about that? What will it help you acheive? You'll probably just die again.")
-		blackboard.emit_signal("queue_story", "???:\nOh... I guess you'll remember that the TekShop exists. Hmm. This might be a problem.")
+		blackboard.emit_signal("show_story", "???", "You found... the TekShop? Why are you so excited about that? What will it help you acheive? You'll probably just die again.")
+		blackboard.emit_signal("queue_story", "???", "Oh... I guess you'll remember that the TekShop exists. Hmm. This might be a problem.")
 
 	
 	# Increment the story index
