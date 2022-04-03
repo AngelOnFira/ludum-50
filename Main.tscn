@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Earth Large.jpeg" type="Texture" id=2]
@@ -13,6 +13,10 @@
 [ext_resource path="res://TekShop.gd" type="Script" id=11]
 [ext_resource path="res://Compendium.gd" type="Script" id=12]
 [ext_resource path="res://Assets/Fonts/MaskShader.tres" type="Material" id=13]
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.221239 )
+colors = PoolColorArray( 0.700195, 0.169382, 0.169382, 1, 0.922852, 0.570524, 0.0838202, 1 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "DecreaseMoney"
@@ -163,22 +167,85 @@ anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 1 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
 [node name="Stars" type="Sprite" parent="."]
-position = Vector2( 495.938, 299 )
-scale = Vector2( 0.547629, 0.53013 )
+visible = false
+position = Vector2( 448, 377 )
+scale = Vector2( 0.665641, 0.710505 )
 texture = ExtResource( 4 )
 
 [node name="EarthLarge" type="Sprite" parent="."]
 material = ExtResource( 13 )
-position = Vector2( 815, 465 )
+position = Vector2( 816, 476 )
 scale = Vector2( 0.339398, 0.354563 )
 texture = ExtResource( 2 )
 
+[node name="StarsBG" type="CPUParticles2D" parent="."]
+position = Vector2( 814, 927 )
+rotation = -3.14159
+scale = Vector2( 1.84334, 1.8732 )
+amount = 100
+lifetime = 10.0
+preprocess = 50.0
+emission_shape = 2
+emission_rect_extents = Vector2( 100, 1 )
+gravity = Vector2( 0, 130 )
+scale_amount = 8.0
+scale_amount_random = 1.0
+
+[node name="StarsBGSlow" type="CPUParticles2D" parent="."]
+position = Vector2( 814, 927 )
+rotation = -3.14159
+scale = Vector2( 1.84334, 1.8732 )
+amount = 600
+lifetime = 10.0
+preprocess = 50.0
+speed_scale = 0.3
+emission_shape = 2
+emission_rect_extents = Vector2( 100, 1 )
+gravity = Vector2( 0, 130 )
+scale_amount = 2.0
+scale_amount_random = 0.3
+
 [node name="Asteroid" type="Sprite" parent="."]
 material = ExtResource( 13 )
-position = Vector2( 805, 82 )
+position = Vector2( 804, 347 )
 scale = Vector2( 0.542493, 0.533846 )
 texture = ExtResource( 3 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Asteroid"]
+position = Vector2( -1.84351, -86.1671 )
+rotation = 3.14159
+scale = Vector2( 1.84334, 1.8732 )
+amount = 30
+lifetime = 2.0
+preprocess = 50.0
+emission_shape = 1
+emission_sphere_radius = 50.0
+gravity = Vector2( 0, 130 )
+scale_amount = 15.9
+color_ramp = SubResource( 5 )
+
+[node name="StarsFG" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2( 814, 927 )
+rotation = -3.14159
+scale = Vector2( 1.84334, 1.8732 )
+amount = 100
+lifetime = 10.0
+preprocess = 50.0
+emission_shape = 2
+emission_rect_extents = Vector2( 100, 1 )
+gravity = Vector2( 0, 130 )
+scale_amount = 4.0
+scale_amount_random = 1.0
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="LeftSide" type="Control" parent="."]
 anchor_right = 0.58
@@ -218,7 +285,6 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 9 )
 
 [node name="AHHHH" type="Tabs" parent="LeftSide/LeftSidePanel/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -330,6 +396,7 @@ custom_fonts/normal_font = ExtResource( 9 )
 text = "asdfasd"
 
 [node name="Compendium" type="Tabs" parent="LeftSide/LeftSidePanel/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -376,7 +443,7 @@ custom_fonts/mono_font = ExtResource( 5 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
 bbcode_text = "afasdfsadfasdasdsdafasdfsa"
-text = "Hmm, it seems that "
+text = "afasdfsadfasdasdsdafasdfsa"
 
 [node name="Continue" type="Button" parent="StoryPanel"]
 pause_mode = 2
@@ -398,6 +465,7 @@ anims/MoveAsteroid = SubResource( 3 )
 anims/RESET = SubResource( 4 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+anim_player = NodePath("../AnimationPlayer")
 
 [connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide1" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide2" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 2 ]]

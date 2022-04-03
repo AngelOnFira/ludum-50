@@ -58,7 +58,7 @@ var try_to_survive_story = [
 func _ready():
 	if debug:
 		# Enable the debug numbers
-		seconds_per_life = 5
+		seconds_per_life = 1
 		laptop_price = 10
 
 		try_to_survive_story = try_to_survive_story[0]
@@ -84,6 +84,7 @@ func reset_game():
 	total_added_seconds_ephemeral = 0.0
 
 	# TODO animate money/time resetting
+	emit_signal("reset_timeline")
 
 
 # Signals

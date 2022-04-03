@@ -22,10 +22,10 @@ onready var blackboard = get_node("/root/Blackboard")
 
 var story_index = 0
 var story = [
-	"Hmm, it seems that the world has ended. How about we give it another try?",
-	"It ended again? Well, I guess we'll have to start over.",
-	"Ok, let's try again. I'll give you a hint: the world is ending.",
-	"I'm sure you'll be able to figure it out. That last hint wasn't super helpful. Aren't you trying to find a way to survive?",
+	"???:\nHmm, it seems that the world has ended. How about we give it another try?",
+	"???:\nIt ended again? Well, I guess we'll have to start over.",
+	"???:\nOk, let's try again. I'll give you a hint: the world is ending.",
+	"???:\nI'm sure you'll be able to figure it out. That last hint wasn't super helpful. Aren't you trying to find a way to survive?",
 ]
 
 var story_queue = []
@@ -57,6 +57,7 @@ func _ready():
 	blackboard.connect("reset_timeline", self, "reset_timeline_animations")
 
 	blackboard.emit_signal("reset_timeline")
+	blackboard.emit_signal("show_story", "Thoughts:\nThe scientist have watched this asteroid coming towards Earth for MONTHS! I guess these are the final few seconds we have...")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -90,8 +91,9 @@ func _process(delta):
 		# Otherwise, just show the next story element
 		elif blackboard.tutorial:
 			# Show story if there is anything new
-			if story_index < len(story):
-				blackboard.emit_signal("show_story", story[story_index])
+			blackboard.emit_signal("show_story", story[story_index])
+
+			if story_index < len(story) - 1:
 				story_index += 1
 
 		$LeftSide/LeftSidePanel/CurrencyBox/Timer.text = "00:000"
@@ -160,4 +162,4 @@ func queue_story(story_text: String):
 # 	animation_player.play("IncreaseTime")
 
 func reset_timeline_animations():
-	animation_player.play("MoveAsteroid")
+	animation_player.play("MoveAsteroid", -1, 1.0, false)
