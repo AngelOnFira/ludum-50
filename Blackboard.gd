@@ -3,14 +3,18 @@ extends Node
 
 var money: int = 0
 
+# Story values
 var seconds_per_life: float = 10.0
 var laptop_price = 1000
 
 var debug = false
 
+# Time variables
 var timer = 1000 * seconds_per_life
 var time_multiplier = 1.0
 
+# Story variables
+var game_loop = 0
 
 # Total time added from things that aren't in the character's memory
 var total_added_seconds_ephemeral = 0.0
@@ -67,7 +71,9 @@ func _ready():
 
 
 func reset_game():
-	print("resetting")
+	# Increase the game loop, story elements will depend on this
+	game_loop += 1
+
 	try_to_survive_story_index = 0
 
 	# Reset the time

@@ -1,9 +1,8 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Earth Large.jpeg" type="Texture" id=2]
 [ext_resource path="res://Assets/Asteroid.jpg" type="Texture" id=3]
-[ext_resource path="res://Assets/Stars.jpg" type="Texture" id=4]
 [ext_resource path="res://Assets/Fonts/HelpFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Assets/Fonts/TimerFont.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Assets/Fonts/Products.tres" type="DynamicFont" id=7]
@@ -13,32 +12,13 @@
 [ext_resource path="res://TekShop.gd" type="Script" id=11]
 [ext_resource path="res://Compendium.gd" type="Script" id=12]
 [ext_resource path="res://Assets/Fonts/MaskShader.tres" type="Material" id=13]
+[ext_resource path="res://Intro.gd" type="Script" id=14]
 
-[sub_resource type="Gradient" id=5]
-offsets = PoolRealArray( 0, 0.221239 )
-colors = PoolColorArray( 0.700195, 0.169382, 0.169382, 1, 0.922852, 0.570524, 0.0838202, 1 )
-
-[sub_resource type="Animation" id=1]
-resource_name = "DecreaseMoney"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Money:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.717647, 0.294118, 0.294118, 1 ), Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=10]
 resource_name = "IncreaseTime"
 loop = true
 tracks/0/type = "bezier"
-tracks/0/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:r")
+tracks/0/path = NodePath(".:modulate:r")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -48,7 +28,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 1 )
 }
 tracks/1/type = "bezier"
-tracks/1/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:g")
+tracks/1/path = NodePath(".:modulate:g")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -58,7 +38,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2, 1 )
 }
 tracks/2/type = "bezier"
-tracks/2/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:b")
+tracks/2/path = NodePath(".:modulate:b")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -68,7 +48,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2, 1 )
 }
 tracks/3/type = "bezier"
-tracks/3/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:a")
+tracks/3/path = NodePath(".:modulate:a")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -78,23 +58,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.2, 1 )
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "MoveAsteroid"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Asteroid:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 805, 82 ), Vector2( 814, 333 ) ]
-}
-
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=11]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Asteroid:position")
@@ -161,6 +125,261 @@ tracks/5/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=12]
+resource_name = "DecreaseMoney"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.717647, 0.294118, 0.294118, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "IncreaseTime"
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.439216, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.815686, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.435294, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 1 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 1 )
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "MoveAsteroid"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Asteroid:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 805, 82 ), Vector2( 814, 333 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Asteroid:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 805, 82 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0.439216, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0.815686, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0.435294, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Money:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.221239 )
+colors = PoolColorArray( 0.700195, 0.169382, 0.169382, 1, 0.922852, 0.570524, 0.0838202, 1 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "MoveAsteroid"
+length = 10.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 261, 101 ), Vector2( 252, 464 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../EarthLarge:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 261, 728 ), Vector2( 256, 604 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 805, 82 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0.439216, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0.815686, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0.435294, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Money:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../EarthLarge:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 242, 728 ) ]
+}
+
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -172,20 +391,214 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
-[node name="Stars" type="Sprite" parent="."]
-visible = false
-position = Vector2( 448, 377 )
-scale = Vector2( 0.665641, 0.710505 )
-texture = ExtResource( 4 )
+[node name="MainScreenDivision" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-[node name="EarthLarge" type="Sprite" parent="."]
+[node name="LeftSide" type="Control" parent="MainScreenDivision"]
+margin_right = 510.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+
+[node name="LeftSidePanel" type="VBoxContainer" parent="MainScreenDivision/LeftSide"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CurrencyBox" type="HBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel"]
+margin_right = 510.0
+margin_bottom = 101.0
+
+[node name="Timer" type="Label" parent="MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox"]
+modulate = Color( 0.479124, 0.828803, 0.475481, 1 )
+margin_right = 293.0
+margin_bottom = 101.0
+custom_fonts/font = ExtResource( 6 )
+text = "10:000"
+
+[node name="TimerAnimation" type="AnimationPlayer" parent="MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Timer"]
+anims/IncreaseTime = SubResource( 10 )
+anims/RESET = SubResource( 11 )
+
+[node name="Money" type="Label" parent="MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox"]
+modulate = Color( 0.717647, 0.294118, 0.294118, 1 )
+margin_left = 297.0
+margin_top = 20.0
+margin_right = 510.0
+margin_bottom = 81.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 10 )
+text = "$6969"
+align = 2
+valign = 1
+
+[node name="MoneyAnimation" type="AnimationPlayer" parent="MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Money"]
+anims/DecreaseMoney = SubResource( 12 )
+anims/IncreaseTime = SubResource( 13 )
+anims/MoveAsteroid = SubResource( 14 )
+anims/RESET = SubResource( 15 )
+
+[node name="TabContainer" type="TabContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel"]
+margin_top = 105.0
+margin_right = 510.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 9 )
+
+[node name="Actions" type="Tabs" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 44.0
+margin_right = -4.0
+margin_bottom = -4.0
+script = ExtResource( 8 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="LeftPanel" type="VBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer"]
+margin_right = 243.0
+margin_bottom = 447.0
+
+[node name="Hide1" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
+margin_right = 243.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 7 )
+text = "Run and hide!"
+
+[node name="Hide2" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
+margin_top = 31.0
+margin_right = 243.0
+margin_bottom = 58.0
+custom_fonts/font = ExtResource( 7 )
+text = "Scream on the streets"
+
+[node name="Hide3" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
+margin_top = 62.0
+margin_right = 243.0
+margin_bottom = 89.0
+custom_fonts/font = ExtResource( 7 )
+text = "Ponder the situation"
+
+[node name="Hide4" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
+visible = false
+margin_top = 93.0
+margin_right = 243.0
+margin_bottom = 120.0
+custom_fonts/font = ExtResource( 7 )
+text = "Scream on the streets"
+
+[node name="Search1" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
+visible = false
+margin_top = 124.0
+margin_right = 243.0
+margin_bottom = 151.0
+custom_fonts/font = ExtResource( 7 )
+text = "Try to survive"
+
+[node name="LogBG" type="ColorRect" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer"]
+margin_left = 247.0
+margin_right = 502.0
+margin_bottom = 447.0
+size_flags_horizontal = 3
+color = Color( 0.215686, 0.215686, 0.215686, 1 )
+
+[node name="HideLog" type="RichTextLabel" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LogBG"]
+margin_left = 4.0
+margin_right = 308.0
+margin_bottom = 434.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 7 )
+custom_fonts/normal_font = ExtResource( 9 )
+text = "asdfasd"
+
+[node name="TekShop" type="Tabs" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+script = ExtResource( 11 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="LeftPanel" type="VBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer"]
+margin_right = 142.0
+margin_bottom = 459.0
+
+[node name="Laptop" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LeftPanel"]
+margin_right = 142.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 7 )
+text = "Laptop $1000"
+
+[node name="LogBG" type="ColorRect" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer"]
+margin_left = 146.0
+margin_right = 585.0
+margin_bottom = 459.0
+size_flags_horizontal = 3
+color = Color( 0.215686, 0.215686, 0.215686, 1 )
+
+[node name="HideLog" type="RichTextLabel" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LogBG"]
+margin_left = 4.0
+margin_right = 308.0
+margin_bottom = 434.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 7 )
+custom_fonts/normal_font = ExtResource( 9 )
+text = "asdfasd"
+
+[node name="Compendium" type="Tabs" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+script = ExtResource( 12 )
+test = NodePath("../../../../RightSide/Asteroid")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Compendium"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="LogBG" type="ColorRect" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Compendium/HBoxContainer"]
+margin_right = 407.0
+margin_bottom = 459.0
+size_flags_horizontal = 3
+color = Color( 0.215686, 0.215686, 0.215686, 1 )
+
+[node name="CompendiumText" type="RichTextLabel" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Compendium/HBoxContainer/LogBG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 7 )
+custom_fonts/normal_font = ExtResource( 9 )
+text = "asdfasd"
+
+[node name="RightSide" type="Control" parent="MainScreenDivision"]
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+
+[node name="EarthLarge" type="Sprite" parent="MainScreenDivision/RightSide"]
 material = ExtResource( 13 )
-position = Vector2( 816, 476 )
+position = Vector2( 242, 728 )
 scale = Vector2( 0.339398, 0.354563 )
 texture = ExtResource( 2 )
 
-[node name="StarsBG" type="CPUParticles2D" parent="."]
-position = Vector2( 814, 927 )
+[node name="StarsBG" type="CPUParticles2D" parent="MainScreenDivision/RightSide"]
+position = Vector2( 259.215, 995.75 )
 rotation = -3.14159
 scale = Vector2( 1.84334, 1.8732 )
 amount = 100
@@ -197,8 +610,8 @@ gravity = Vector2( 0, 130 )
 scale_amount = 8.0
 scale_amount_random = 1.0
 
-[node name="StarsBGSlow" type="CPUParticles2D" parent="."]
-position = Vector2( 814, 927 )
+[node name="StarsBGSlow" type="CPUParticles2D" parent="MainScreenDivision/RightSide"]
+position = Vector2( 259.215, 995.75 )
 rotation = -3.14159
 scale = Vector2( 1.84334, 1.8732 )
 amount = 600
@@ -211,13 +624,13 @@ gravity = Vector2( 0, 130 )
 scale_amount = 2.0
 scale_amount_random = 0.3
 
-[node name="Asteroid" type="Sprite" parent="."]
+[node name="Asteroid" type="Sprite" parent="MainScreenDivision/RightSide"]
 material = ExtResource( 13 )
-position = Vector2( 804, 347 )
+position = Vector2( 805, 82 )
 scale = Vector2( 0.542493, 0.533846 )
 texture = ExtResource( 3 )
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Asteroid"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="MainScreenDivision/RightSide/Asteroid"]
 position = Vector2( -1.84351, -86.1671 )
 rotation = 3.14159
 scale = Vector2( 1.84334, 1.8732 )
@@ -230,200 +643,9 @@ gravity = Vector2( 0, 130 )
 scale_amount = 15.9
 color_ramp = SubResource( 5 )
 
-[node name="StarsFG" type="CPUParticles2D" parent="."]
-visible = false
-position = Vector2( 814, 927 )
-rotation = -3.14159
-scale = Vector2( 1.84334, 1.8732 )
-amount = 100
-lifetime = 10.0
-preprocess = 50.0
-emission_shape = 2
-emission_rect_extents = Vector2( 100, 1 )
-gravity = Vector2( 0, 130 )
-scale_amount = 4.0
-scale_amount_random = 1.0
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="LeftSide" type="Control" parent="."]
-anchor_right = 0.58
-anchor_bottom = 1.0
-
-[node name="LeftSidePanel" type="VBoxContainer" parent="LeftSide"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="CurrencyBox" type="HBoxContainer" parent="LeftSide/LeftSidePanel"]
-margin_right = 593.0
-margin_bottom = 101.0
-
-[node name="Timer" type="Label" parent="LeftSide/LeftSidePanel/CurrencyBox"]
-modulate = Color( 0.439216, 0.815686, 0.435294, 1 )
-margin_right = 293.0
-margin_bottom = 101.0
-custom_fonts/font = ExtResource( 6 )
-text = "10:000"
-
-[node name="Money" type="Label" parent="LeftSide/LeftSidePanel/CurrencyBox"]
-margin_left = 297.0
-margin_top = 20.0
-margin_right = 593.0
-margin_bottom = 81.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 10 )
-text = "$6969"
-align = 2
-valign = 1
-
-[node name="TabContainer" type="TabContainer" parent="LeftSide/LeftSidePanel"]
-margin_top = 105.0
-margin_right = 593.0
-margin_bottom = 600.0
-size_flags_vertical = 3
-custom_fonts/font = ExtResource( 9 )
-
-[node name="AHHHH" type="Tabs" parent="LeftSide/LeftSidePanel/TabContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 44.0
-margin_right = -4.0
-margin_bottom = -4.0
-script = ExtResource( 8 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="LeftPanel" type="VBoxContainer" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer"]
-margin_right = 243.0
-margin_bottom = 447.0
-
-[node name="Hide1" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel"]
-margin_right = 243.0
-margin_bottom = 27.0
-custom_fonts/font = ExtResource( 7 )
-text = "Run and hide!"
-
-[node name="Hide2" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel"]
-margin_top = 31.0
-margin_right = 243.0
-margin_bottom = 58.0
-custom_fonts/font = ExtResource( 7 )
-text = "Scream on the streets"
-
-[node name="Hide3" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel"]
-margin_top = 62.0
-margin_right = 243.0
-margin_bottom = 89.0
-custom_fonts/font = ExtResource( 7 )
-text = "Ponder the situation"
-
-[node name="Hide4" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel"]
-visible = false
-margin_top = 93.0
-margin_right = 243.0
-margin_bottom = 120.0
-custom_fonts/font = ExtResource( 7 )
-text = "Scream on the streets"
-
-[node name="Search1" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel"]
-visible = false
-margin_top = 124.0
-margin_right = 243.0
-margin_bottom = 151.0
-custom_fonts/font = ExtResource( 7 )
-text = "Try to survive"
-
-[node name="LogBG" type="ColorRect" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer"]
-margin_left = 247.0
-margin_right = 585.0
-margin_bottom = 447.0
-size_flags_horizontal = 3
-color = Color( 0.215686, 0.215686, 0.215686, 1 )
-
-[node name="HideLog" type="RichTextLabel" parent="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LogBG"]
-margin_left = 4.0
-margin_right = 308.0
-margin_bottom = 434.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/mono_font = ExtResource( 7 )
-custom_fonts/normal_font = ExtResource( 9 )
-text = "asdfasd"
-
-[node name="TekShop" type="Tabs" parent="LeftSide/LeftSidePanel/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
-script = ExtResource( 11 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftSide/LeftSidePanel/TabContainer/TekShop"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="LeftPanel" type="VBoxContainer" parent="LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer"]
-margin_right = 142.0
-margin_bottom = 459.0
-
-[node name="Laptop" type="Button" parent="LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LeftPanel"]
-margin_right = 142.0
-margin_bottom = 27.0
-custom_fonts/font = ExtResource( 7 )
-text = "Laptop $1000"
-
-[node name="LogBG" type="ColorRect" parent="LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer"]
-margin_left = 146.0
-margin_right = 585.0
-margin_bottom = 459.0
-size_flags_horizontal = 3
-color = Color( 0.215686, 0.215686, 0.215686, 1 )
-
-[node name="HideLog" type="RichTextLabel" parent="LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LogBG"]
-margin_left = 4.0
-margin_right = 308.0
-margin_bottom = 434.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/mono_font = ExtResource( 7 )
-custom_fonts/normal_font = ExtResource( 9 )
-text = "asdfasd"
-
-[node name="Compendium" type="Tabs" parent="LeftSide/LeftSidePanel/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
-script = ExtResource( 12 )
-test = NodePath("../../../../Asteroid")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftSide/LeftSidePanel/TabContainer/Compendium"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="LogBG" type="ColorRect" parent="LeftSide/LeftSidePanel/TabContainer/Compendium/HBoxContainer"]
-margin_right = 407.0
-margin_bottom = 459.0
-size_flags_horizontal = 3
-color = Color( 0.215686, 0.215686, 0.215686, 1 )
-
-[node name="CompendiumText" type="RichTextLabel" parent="LeftSide/LeftSidePanel/TabContainer/Compendium/HBoxContainer/LogBG"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/mono_font = ExtResource( 7 )
-custom_fonts/normal_font = ExtResource( 9 )
-text = "asdfasd"
+[node name="AsteroidAnimation" type="AnimationPlayer" parent="MainScreenDivision/RightSide/Asteroid"]
+anims/MoveAsteroid = SubResource( 8 )
+anims/RESET = SubResource( 9 )
 
 [node name="StoryPanel" type="ColorRect" parent="."]
 visible = false
@@ -457,20 +679,19 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 6 )
 text = "Continue"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../EarthLarge")
-anims/DecreaseMoney = SubResource( 1 )
-anims/IncreaseTime = SubResource( 2 )
-anims/MoveAsteroid = SubResource( 3 )
-anims/RESET = SubResource( 4 )
+[node name="Story" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-anim_player = NodePath("../AnimationPlayer")
+[node name="Intro" type="Control" parent="Story"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 14 )
 
-[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide1" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 1 ]]
-[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide2" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 2 ]]
-[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide3" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 3 ]]
-[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Hide4" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Hide_pressed" binds= [ 4 ]]
-[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/AHHHH/HBoxContainer/LeftPanel/Search1" to="LeftSide/LeftSidePanel/TabContainer/AHHHH" method="_on_Search_pressed"]
-[connection signal="pressed" from="LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LeftPanel/Laptop" to="LeftSide/LeftSidePanel/TabContainer/TekShop" method="_on_Laptop_pressed"]
+[connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Hide1" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Hide_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Hide2" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Hide_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Hide3" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Hide_pressed" binds= [ 3 ]]
+[connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Hide4" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Hide_pressed" binds= [ 4 ]]
+[connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Search1" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Search_pressed"]
+[connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LeftPanel/Laptop" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop" method="_on_Laptop_pressed"]
 [connection signal="pressed" from="StoryPanel/Continue" to="." method="_on_Continue_pressed"]

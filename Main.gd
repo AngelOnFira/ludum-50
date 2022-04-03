@@ -34,9 +34,15 @@ var levels = [
 	0, # Laptop updates
 ]
 
-onready var tab_container = $LeftSide/LeftSidePanel/TabContainer
-onready var animation_player = $AnimationPlayer
+onready var tab_container = $MainScreenDivision/LeftSide/LeftSidePanel/TabContainer
 
+# Animations
+onready var money_animation_player = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Money/MoneyAnimation
+onready var timer_animation_player = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Timer/TimerAnimation
+onready var asteroid_animation_player = $MainScreenDivision/RightSide/Asteroid/AsteroidAnimation
+
+onready var timer_node = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Timer
+onready var money_node = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Money
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -69,7 +75,7 @@ func _process(delta):
 	
 	blackboard.money += gain
 	var amount = int(blackboard.money)
-	$LeftSide/LeftSidePanel/CurrencyBox/Money.text = "$" + str(amount)
+	money_node.text = "$" + str(amount)
 
 	
 	# Make changes to time
@@ -96,7 +102,7 @@ func _process(delta):
 			if story_index < len(story) - 1:
 				story_index += 1
 
-		$LeftSide/LeftSidePanel/CurrencyBox/Timer.text = "00:000"
+		timer_node.text = "00:000"
 
 # Make the calculations of how the timer should change
 func change_time(delta):
@@ -120,7 +126,7 @@ func change_time(delta):
 		milliseconds,
 	]
 	
-	$LeftSide/LeftSidePanel/CurrencyBox/Timer.text = time_left
+	timer_node.text = time_left
 
 func _on_Button_pressed():
 	levels[0] += 1
@@ -133,7 +139,7 @@ func _on_Continue_pressed():
 	# Start the game again
 	get_tree().paused = false
 
-	$LeftSide/LeftSidePanel/CurrencyBox/Timer.text = "10:000"
+	timer_node.text = "10:000"
 
 
 
@@ -155,11 +161,11 @@ func queue_story(story_text: String):
 	# Add the story to the queue
 	story_queue.append(story_text)
 
-# func decrease_money_animation():
-# 	animation_player.play("DecreaseMoney")
+func decrease_money_animation():
+	money_animation_player.play("DecreaseMoney")
 
-# func increase_time_animation():
-# 	animation_player.play("IncreaseTime")
+func increase_time_animation():
+	timer_animation_player.play("IncreaseTime")
 
 func reset_timeline_animations():
-	animation_player.play("MoveAsteroid", -1, 1.0, false)
+	asteroid_animation_player.play("MoveAsteroid", -1, 1.0, false)
