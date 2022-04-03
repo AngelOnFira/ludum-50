@@ -649,34 +649,47 @@ color_ramp = SubResource( 5 )
 anims/MoveAsteroid = SubResource( 8 )
 anims/RESET = SubResource( 9 )
 
-[node name="StoryPanel" type="ColorRect" parent="."]
-visible = false
-anchor_top = 0.671
+[node name="GreyOutScreen" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.694118 )
+
+[node name="StoryPanel" type="ColorRect" parent="GreyOutScreen"]
+anchor_top = 0.339
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_bottom = 103.4
 rect_min_size = Vector2( 0, 200 )
 mouse_filter = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="StoryPanel"]
+[node name="StoryLabel" type="RichTextLabel" parent="GreyOutScreen/StoryPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 10.0
+margin_right = -20.0
+margin_bottom = -10.0
 rect_min_size = Vector2( 0, 200 )
 mouse_filter = 2
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_fonts/mono_font = ExtResource( 5 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
+bbcode_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+"
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+"
 
-[node name="Continue" type="Button" parent="StoryPanel"]
+[node name="Continue" type="Button" parent="GreyOutScreen/StoryPanel"]
 pause_mode = 2
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -440.0
-margin_top = -107.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 6 )
+margin_left = -267.0
+margin_top = -67.0
+custom_colors/font_color = Color( 0.454902, 0.780392, 0.396078, 1 )
+custom_fonts/font = ExtResource( 10 )
 text = "Continue"
 
 [node name="Story" type="Control" parent="."]
@@ -694,4 +707,4 @@ script = ExtResource( 14 )
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Hide4" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Hide_pressed" binds= [ 4 ]]
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Search1" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Search_pressed"]
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LeftPanel/Laptop" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop" method="_on_Laptop_pressed"]
-[connection signal="pressed" from="StoryPanel/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="GreyOutScreen/StoryPanel/Continue" to="." method="_on_Continue_pressed"]

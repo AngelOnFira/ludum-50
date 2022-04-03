@@ -43,10 +43,11 @@ onready var asteroid_animation_player = $MainScreenDivision/RightSide/Asteroid/A
 
 onready var timer_node = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Timer
 onready var money_node = $MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Money
+onready var story_label = $GreyOutScreen/StoryPanel/StoryLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$StoryPanel/RichTextLabel.text = story[0]
+	story_label.text = story[0]
 	
 	# Hide any tabs except the first
 	for i in range(1, tab_container.get_child_count()):
@@ -134,7 +135,7 @@ func _on_Button_pressed():
 
 func _on_Continue_pressed():
 	# Hide the panel
-	$StoryPanel.visible = false
+	$GreyOutScreen.visible = false
 
 	# Start the game again
 	get_tree().paused = false
@@ -158,10 +159,10 @@ func show_story(speaker: String, story_text: String):
 		speaker_coloured = "[color=green]%s[/color]" % speaker
 
 	# Change the text
-	$StoryPanel/RichTextLabel.bbcode_text = speaker_coloured + ":\n" + story_text
+	story_label.bbcode_text = speaker_coloured + ":\n" + story_text
 
 	# Show the StoryPanel
-	$StoryPanel.visible = true
+	$GreyOutScreen.visible = true
 
 	# Pause the game
 	get_tree().paused = true
