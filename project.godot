@@ -11,12 +11,12 @@ config_version=4
 [application]
 
 config/name="Ludem- 2022"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Scenes/Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Blackboard="*res://Blackboard.gd"
+Blackboard="*res://Scripts/Blackboard.gd"
 
 [display]
 

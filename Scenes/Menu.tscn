@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Fonts/TimerFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scenes/Asteroid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=3]
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="SpaceBG" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="RightSide" parent="." instance=ExtResource( 2 )]
+margin_left = 466.0
+margin_top = 454.0
+margin_right = 976.0
+margin_bottom = 1054.0
+rect_rotation = -89.9288
+
+[node name="Start" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.941
+anchor_right = 0.5
+anchor_bottom = 0.963
+margin_left = -148.5
+margin_top = -107.0
+margin_right = 148.5
+custom_fonts/font = ExtResource( 1 )
+text = "Start"
+
+[connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]

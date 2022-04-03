@@ -1,18 +1,16 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Earth Large.jpeg" type="Texture" id=2]
-[ext_resource path="res://Assets/Asteroid.jpg" type="Texture" id=3]
+[ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Asteroid.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Fonts/HelpFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Assets/Fonts/TimerFont.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Assets/Fonts/Products.tres" type="DynamicFont" id=7]
-[ext_resource path="res://RunAndHide.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/RunAndHide.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Fonts/Log.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Assets/Fonts/MoneyFont.tres" type="DynamicFont" id=10]
-[ext_resource path="res://TekShop.gd" type="Script" id=11]
-[ext_resource path="res://Compendium.gd" type="Script" id=12]
-[ext_resource path="res://Assets/Fonts/MaskShader.tres" type="Material" id=13]
-[ext_resource path="res://Intro.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/TekShop.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Compendium.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/Intro.gd" type="Script" id=14]
 
 [sub_resource type="Animation" id=10]
 resource_name = "IncreaseTime"
@@ -130,66 +128,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Gradient" id=5]
-offsets = PoolRealArray( 0, 0.221239 )
-colors = PoolColorArray( 0.700195, 0.169382, 0.169382, 1, 0.922852, 0.570524, 0.0838202, 1 )
-
-[sub_resource type="Animation" id=8]
-resource_name = "MoveAsteroid"
-length = 10.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 261, 101 ), Vector2( 252, 464 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../EarthLarge:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 261, 728 ), Vector2( 256, 604 ) ]
-}
-
-[sub_resource type="Animation" id=9]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 261, 101 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../EarthLarge:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 242, 728 ) ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -494,67 +432,7 @@ custom_fonts/mono_font = ExtResource( 7 )
 custom_fonts/normal_font = ExtResource( 9 )
 text = "asdfasd"
 
-[node name="RightSide" type="Control" parent="MainScreenDivision"]
-margin_left = 514.0
-margin_right = 1024.0
-margin_bottom = 600.0
-size_flags_horizontal = 3
-
-[node name="EarthLarge" type="Sprite" parent="MainScreenDivision/RightSide"]
-material = ExtResource( 13 )
-position = Vector2( 242, 728 )
-scale = Vector2( 0.339398, 0.354563 )
-texture = ExtResource( 2 )
-
-[node name="StarsBG" type="CPUParticles2D" parent="MainScreenDivision/RightSide"]
-position = Vector2( 259.215, 995.75 )
-rotation = -3.14159
-scale = Vector2( 1.84334, 1.8732 )
-amount = 100
-lifetime = 10.0
-preprocess = 50.0
-emission_shape = 2
-emission_rect_extents = Vector2( 100, 1 )
-gravity = Vector2( 0, 130 )
-scale_amount = 8.0
-scale_amount_random = 1.0
-
-[node name="StarsBGSlow" type="CPUParticles2D" parent="MainScreenDivision/RightSide"]
-position = Vector2( 259.215, 995.75 )
-rotation = -3.14159
-scale = Vector2( 1.84334, 1.8732 )
-amount = 600
-lifetime = 10.0
-preprocess = 50.0
-speed_scale = 0.3
-emission_shape = 2
-emission_rect_extents = Vector2( 100, 1 )
-gravity = Vector2( 0, 130 )
-scale_amount = 2.0
-scale_amount_random = 0.3
-
-[node name="Asteroid" type="Sprite" parent="MainScreenDivision/RightSide"]
-material = ExtResource( 13 )
-position = Vector2( 261, 101 )
-scale = Vector2( 0.542493, 0.533846 )
-texture = ExtResource( 3 )
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="MainScreenDivision/RightSide/Asteroid"]
-position = Vector2( -1.84351, -86.1671 )
-rotation = 3.14159
-scale = Vector2( 1.84334, 1.8732 )
-amount = 30
-lifetime = 2.0
-preprocess = 50.0
-emission_shape = 1
-emission_sphere_radius = 50.0
-gravity = Vector2( 0, 130 )
-scale_amount = 15.9
-color_ramp = SubResource( 5 )
-
-[node name="AsteroidAnimation" type="AnimationPlayer" parent="MainScreenDivision/RightSide/Asteroid"]
-anims/MoveAsteroid = SubResource( 8 )
-anims/RESET = SubResource( 9 )
+[node name="RightSide" parent="MainScreenDivision" instance=ExtResource( 2 )]
 
 [node name="GreyOutScreen" type="ColorRect" parent="."]
 visible = false
