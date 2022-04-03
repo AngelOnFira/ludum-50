@@ -18,9 +18,9 @@ onready var blackboard = get_node("/root/Blackboard")
 
 onready var dosh = preload("res://Scenes/Dosh.tscn")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
+onready var asteroid_animation_player = $MainScreenDivision/RightSide/Asteroid/AsteroidAnimation
+
 
 # Design
 # 
@@ -173,7 +173,7 @@ func _on_Button_pressed():
 
 func _on_Continue_pressed():
 	# Hide the panel
-	$GreyOutScreen.visible = false
+	_grey_out_screen.visible = false
 
 	
 	_timer.text = "10:000"
@@ -215,7 +215,7 @@ func show_story(speaker: String, story_text: String):
 	_story_label.bbcode_text = speaker_coloured + ":\n" + story_text
 
 	# Show the StoryPanel
-	$GreyOutScreen.visible = true
+	_grey_out_screen.visible = true
 
 	# Pause the game
 	get_tree().paused = true
