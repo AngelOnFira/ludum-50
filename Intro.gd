@@ -18,7 +18,7 @@ func _process(delta):
 		blackboard.emit_signal(
 			"show_story",
 			"Thoughts",
-			"Scientists warned us about the asteroid for months"
+			"Scientists warned us about the asteroid for months."
 		)
 
 	if blackboard.timer < 6 * 1000 and shown[1] == false:
@@ -26,5 +26,5 @@ func _process(delta):
 		blackboard.emit_signal(
 			"show_story",
 			"Thoughts",
-			"Scientists have been warning about the asteroid for months"
+			"I guess these are the final few seconds we have..."
 		)

@@ -64,7 +64,7 @@ func _ready():
 	blackboard.connect("reset_timeline", self, "reset_timeline_animations")
 
 	blackboard.emit_signal("reset_timeline")
-	blackboard.emit_signal("show_story", "Thoughts", "The scientist have watched this asteroid coming towards Earth for MONTHS! I guess these are the final few seconds we have...")
+	blackboard.emit_signal("show_story", "Thoughts", "Today is the last day.")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -85,8 +85,9 @@ func _process(delta):
 	# If time runs out, reset the timer to 10 seconds
 	if blackboard.timer <= 0:
 
-		print(story_queue)
-		
+		# Play the white screen animation
+		$GameCover/GameCoverAnimation.play("EndWorld")
+
 		# Run the reset function in blackboard
 		blackboard.reset_game()
 

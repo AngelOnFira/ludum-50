@@ -60,69 +60,45 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=11]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Asteroid:position")
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:modulate:r")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 805, 82 ) ]
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
 }
 tracks/1/type = "bezier"
-tracks/1/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:r")
+tracks/1/path = NodePath(".:modulate:g")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 0.439216, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
 }
 tracks/2/type = "bezier"
-tracks/2/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:g")
+tracks/2/path = NodePath(".:modulate:b")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 0.815686, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
 }
 tracks/3/type = "bezier"
-tracks/3/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:b")
+tracks/3/path = NodePath(".:a")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"points": PoolRealArray( 0.435294, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/4/type = "bezier"
-tracks/4/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:a")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Money:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -141,127 +117,15 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.717647, 0.294118, 0.294118, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=13]
-resource_name = "IncreaseTime"
-loop = true
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:r")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.439216, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.2, 1 )
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:g")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.815686, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.2, 1 )
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:b")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.435294, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.2, 1 )
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:a")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.2, 1 )
-}
-
-[sub_resource type="Animation" id=14]
-resource_name = "MoveAsteroid"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Asteroid:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 805, 82 ), Vector2( 814, 333 ) ]
-}
-
 [sub_resource type="Animation" id=15]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Asteroid:position")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 805, 82 ) ]
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:r")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray( 0.439216, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:g")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray( 0.815686, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:b")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"points": PoolRealArray( 0.435294, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/4/type = "bezier"
-tracks/4/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:a")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Money:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -313,71 +177,118 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 805, 82 ) ]
+"values": [ Vector2( 261, 101 ) ]
 }
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:r")
+tracks/1/type = "value"
+tracks/1/path = NodePath("../EarthLarge:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 0.439216, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 242, 728 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "EndWorld"
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
 }
 tracks/2/type = "bezier"
-tracks/2/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:g")
+tracks/2/path = NodePath(".:color:b")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 0.815686, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
 }
 tracks/3/type = "bezier"
-tracks/3/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:b")
+tracks/3/path = NodePath(".:color:a")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"points": PoolRealArray( 0.435294, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"points": PoolRealArray( 0, -0.25, 0, 0.9, 0.122275, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
 }
-tracks/4/type = "bezier"
-tracks/4/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Timer:modulate:a")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("../LeftSide/LeftSidePanel/CurrencyBox/Money:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
+
+[sub_resource type="Animation" id=17]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
-tracks/6/type = "value"
-tracks/6/path = NodePath("../EarthLarge:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 242, 728 ) ]
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:color:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath(".:color:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath(".:color:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath(".:color:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
 }
 
 [node name="Main" type="Control"]
@@ -409,7 +320,6 @@ margin_right = 510.0
 margin_bottom = 101.0
 
 [node name="Timer" type="Label" parent="MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox"]
-modulate = Color( 0.479124, 0.828803, 0.475481, 1 )
 margin_right = 293.0
 margin_bottom = 101.0
 custom_fonts/font = ExtResource( 6 )
@@ -420,7 +330,6 @@ anims/IncreaseTime = SubResource( 10 )
 anims/RESET = SubResource( 11 )
 
 [node name="Money" type="Label" parent="MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox"]
-modulate = Color( 0.717647, 0.294118, 0.294118, 1 )
 margin_left = 297.0
 margin_top = 20.0
 margin_right = 510.0
@@ -433,8 +342,6 @@ valign = 1
 
 [node name="MoneyAnimation" type="AnimationPlayer" parent="MainScreenDivision/LeftSide/LeftSidePanel/CurrencyBox/Money"]
 anims/DecreaseMoney = SubResource( 12 )
-anims/IncreaseTime = SubResource( 13 )
-anims/MoveAsteroid = SubResource( 14 )
 anims/RESET = SubResource( 15 )
 
 [node name="TabContainer" type="TabContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel"]
@@ -460,26 +367,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="LeftPanel" type="VBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer"]
-margin_right = 243.0
+margin_right = 244.0
 margin_bottom = 447.0
 
 [node name="Hide1" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
-margin_right = 243.0
-margin_bottom = 27.0
+margin_right = 244.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 7 )
 text = "Run and hide!"
 
 [node name="Hide2" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
-margin_top = 31.0
-margin_right = 243.0
-margin_bottom = 58.0
+margin_top = 26.0
+margin_right = 244.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 7 )
 text = "Scream on the streets"
 
 [node name="Hide3" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel"]
-margin_top = 62.0
-margin_right = 243.0
-margin_bottom = 89.0
+margin_top = 52.0
+margin_right = 244.0
+margin_bottom = 74.0
 custom_fonts/font = ExtResource( 7 )
 text = "Ponder the situation"
 
@@ -500,7 +407,7 @@ custom_fonts/font = ExtResource( 7 )
 text = "Try to survive"
 
 [node name="LogBG" type="ColorRect" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer"]
-margin_left = 247.0
+margin_left = 248.0
 margin_right = 502.0
 margin_bottom = 447.0
 size_flags_horizontal = 3
@@ -628,7 +535,7 @@ scale_amount_random = 0.3
 
 [node name="Asteroid" type="Sprite" parent="MainScreenDivision/RightSide"]
 material = ExtResource( 13 )
-position = Vector2( 805, 82 )
+position = Vector2( 261, 101 )
 scale = Vector2( 0.542493, 0.533846 )
 texture = ExtResource( 3 )
 
@@ -650,6 +557,7 @@ anims/MoveAsteroid = SubResource( 8 )
 anims/RESET = SubResource( 9 )
 
 [node name="GreyOutScreen" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.694118 )
@@ -695,11 +603,22 @@ text = "Continue"
 [node name="Story" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 
 [node name="Intro" type="Control" parent="Story"]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 14 )
+
+[node name="GameCover" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 1, 1, 1, 0 )
+
+[node name="GameCoverAnimation" type="AnimationPlayer" parent="GameCover"]
+anims/EndWorld = SubResource( 16 )
+anims/RESET = SubResource( 17 )
 
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Hide1" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Hide_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Hide2" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Hide_pressed" binds= [ 2 ]]
