@@ -46,7 +46,7 @@ window/size/resizable=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/godot-sfxr-main/addons/godot_sfxr/plugin.cfg", "res://addons/godot_sfxr/plugin.cfg", "res://addons/node_referencer/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/godot_sfxr/plugin.cfg", "res://addons/node_referencer/plugin.cfg" )
 
 [physics]
 
