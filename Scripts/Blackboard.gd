@@ -92,6 +92,7 @@ signal progress_time(delta)
 
 signal add_money(amount)
 
+signal play_sfx(sound)
 # Get the multiplier for time
 func update_time_multiplier():
 	# Collect times from the compendium

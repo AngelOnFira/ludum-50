@@ -7,12 +7,12 @@ onready var _progress_bar: ProgressBar = $HBoxContainer/ProgressBar
 
 onready var blackboard = get_node("/root/Blackboard")
 
-
+var total_time_needed: float = 5.0
 var system_name = "Computer"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	_progress_bar.value = 0
 
 
 func change_name(new_name: String):
@@ -22,4 +22,8 @@ func change_name(new_name: String):
 	blackboard.connect("progress_time", self, "progress_time")
 
 func progress_time(delta: float):
-	_progress_bar.progress += delta
+	var percent_passed = delta / total_time_needed * 100
+	_progress_bar.value += percent_passed
+
+func _process(delta):
+	progress_time(delta)

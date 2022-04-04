@@ -8,6 +8,28 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Reference",
+"class": "SfxrGenerator",
+"language": "GDScript",
+"path": "res://addons/godot_sfxr/SfxrGenerator.gd"
+}, {
+"base": "Object",
+"class": "SfxrGlobals",
+"language": "GDScript",
+"path": "res://addons/godot_sfxr/SfxrGlobals.gd"
+}, {
+"base": "Object",
+"class": "SfxrStreamPlayerInterface",
+"language": "GDScript",
+"path": "res://addons/godot_sfxr/SfxrStreamPlayerInterface.gd"
+} ]
+_global_script_class_icons={
+"SfxrGenerator": "",
+"SfxrGlobals": "",
+"SfxrStreamPlayerInterface": ""
+}
+
 [application]
 
 config/name="Ludem- 2022"
@@ -24,7 +46,7 @@ window/size/resizable=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/node_referencer/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/godot-sfxr-main/addons/godot_sfxr/plugin.cfg", "res://addons/godot_sfxr/plugin.cfg", "res://addons/node_referencer/plugin.cfg" )
 
 [physics]
 

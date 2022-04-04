@@ -137,3 +137,6 @@ func _on_Loot_pressed():
 
 	# Add the log entry
 	insert_log(money_found_string)
+
+	# Play the loot stf
+	blackboard.emit_signal("play_sfx", "money_gain")

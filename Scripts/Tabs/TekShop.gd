@@ -12,6 +12,7 @@ func _ready():
 #	pass
 
 
+# If the buy laptop button is pressed
 func _on_Laptop_pressed():
 	# Make sure they have enough money
 	if blackboard.money > blackboard.laptop_price:
@@ -26,3 +27,6 @@ func _on_Laptop_pressed():
 			"Medetation techniques",
 			5.0
 		)
+
+		# Add a laptop to the homelab
+		
