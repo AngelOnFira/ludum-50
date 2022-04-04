@@ -199,7 +199,9 @@ func _on_Continue_pressed():
 
 
 func show_tab(tab: int):
+	var current_tab = _tab_container.current_tab
 	_tab_container.set_tab_hidden(tab, false)
+	_tab_container.current_tab = current_tab
 
 
 func show_story(speaker: String, story_text: String):
@@ -254,3 +256,7 @@ func add_money(amount: int):
 
 	blackboard.money += amount
 	_money.text = "$" + str(blackboard.money)
+
+
+func _on_TabContainer_tab_changed(tab:int):
+	print("changingin to ", tab)

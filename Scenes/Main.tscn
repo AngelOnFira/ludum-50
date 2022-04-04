@@ -310,6 +310,7 @@ custom_colors/font_color_fg = Color( 1, 0.901961, 0.298039, 1 )
 custom_fonts/font = ExtResource( 9 )
 
 [node name="Actions" type="Tabs" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -380,7 +381,6 @@ custom_fonts/normal_font = ExtResource( 9 )
 text = "asdfasd"
 
 [node name="TekShop" type="Tabs" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -395,7 +395,7 @@ anchor_bottom = 1.0
 
 [node name="LeftPanel" type="VBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer"]
 margin_right = 154.0
-margin_bottom = 459.0
+margin_bottom = 460.0
 
 [node name="Laptop" type="Button" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/LeftPanel"]
 margin_right = 154.0
@@ -406,7 +406,7 @@ text = "Laptop $1000"
 [node name="VBoxContainer" type="VBoxContainer" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer"]
 margin_left = 158.0
 margin_right = 502.0
-margin_bottom = 459.0
+margin_bottom = 460.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/VBoxContainer"]
@@ -416,6 +416,11 @@ custom_fonts/font = ExtResource( 7 )
 text = "Homelab"
 
 [node name="System" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/VBoxContainer" instance=ExtResource( 3 )]
+
+[node name="HomeLab" type="Control" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/TekShop/HBoxContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 344.0
+margin_bottom = 24.0
 
 [node name="Compendium" type="Tabs" parent="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer"]
 visible = false
@@ -559,6 +564,7 @@ low_pass_filter/resonance = 0.0
 high_pass_filter/cutoff_frequency = 0.0
 high_pass_filter/cutoff_sweep = 0.0
 
+[connection signal="tab_changed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer" to="." method="_on_TabContainer_tab_changed"]
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Scream" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Scream_pressed"]
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Explore" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Search_pressed"]
 [connection signal="pressed" from="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions/HBoxContainer/LeftPanel/Loot" to="MainScreenDivision/LeftSide/LeftSidePanel/TabContainer/Actions" method="_on_Loot_pressed"]

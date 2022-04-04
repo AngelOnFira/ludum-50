@@ -1,6 +1,12 @@
 extends Tabs
 
+### Automatic References Start ###
+onready var _home_lab: Control = $HBoxContainer/VBoxContainer/HomeLab
+### Automatic References Stop ###
+
 onready var blackboard = get_node("/root/Blackboard")
+onready var system = preload("res://Scenes/System.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,4 +35,7 @@ func _on_Laptop_pressed():
 		)
 
 		# Add a laptop to the homelab
-		
+		var new_system = system.instance()
+		_home_lab.add_child(new_system)
+
+		new_system.total_time_needed = 1.0

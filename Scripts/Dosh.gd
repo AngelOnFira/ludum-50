@@ -5,6 +5,8 @@ onready var _dosh_animator: AnimationPlayer = $AnimationShift/DoshAnimator
 onready var _label: Label = $AnimationShift/Label
 ### Automatic References Stop ###
 
+
+
 var amount = 0
 
 # Called when the node enters the scene tree for the first time.
