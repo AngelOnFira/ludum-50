@@ -1,5 +1,6 @@
-mod menu;
+mod dosh;
 mod game;
+mod menu;
 
 use gdnative::prelude::{godot_init, InitHandle};
 
@@ -7,6 +8,7 @@ use gdnative::prelude::{godot_init, InitHandle};
 fn init(handle: InitHandle) {
     handle.add_class::<game::Game>();
     handle.add_class::<menu::Menu>();
+    handle.add_class::<dosh::Dosh>();
 }
 
 // macros that create the entry-points of the dynamic library.

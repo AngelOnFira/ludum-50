@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/Dosh.gd" type="Script" id=1]
+[ext_resource path="res://Native/Dosh.gdns" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/DoshFont.tres" type="DynamicFont" id=2]
 
 [sub_resource type="Animation" id=1]
